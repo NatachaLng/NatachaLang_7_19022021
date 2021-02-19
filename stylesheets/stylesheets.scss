@@ -9,11 +9,13 @@ $lightgrey: #E7E7E7;
 {
   font-family: "Roboto";
   src: url('../fonts/Roboto-Regular.ttf') format('truetype');
+  font-family: "Lato";
+  src: url('../fonts/Lato-Regular.ttf') format('truetype');
 }
 
 *
 {
-  font-family: "Roboto";
+  font-family: "Lato";
 }
 
 a
@@ -99,5 +101,31 @@ main{
   display: flex;
   flex-direction: row;
   justify-content: space-between;
-  width: 100%;
+  width: 340px;
+}
+
+h2{
+  font-size: 20px;
+}
+
+.card__recipe{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 340px;
+}
+
+.card__recipes--details{
+  max-width: 45%;
+  font-size: 12px;
+}
+
+.card__recipes--ingredient{
+  font-weight: bold;
+}
+
+.card__recipes--explanation{
+  font-family: Roboto;
+  max-width: 45%;
+  font-size: 12px;
 }
