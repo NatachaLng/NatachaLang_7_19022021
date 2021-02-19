@@ -5,11 +5,33 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
     <link href="stylesheets/stylesheets.css" rel="stylesheet" type="text/css">
+    <script src="https://kit.fontawesome.com/2b64b48d7b.js" crossorigin="anonymous"></script>
     <title>Les petits plats</title>
 </head>
 <body>
 <header>
-    <img class="header__logo" src="images/logo_les_petits_plats.png" href="index.html" alt="logo les petits plats">
+    <div class="logo__container">
+        <img class="header__logo" src="images/logo_les_petits_plats.png" href="index.html" alt="logo les petits plats">
+    </div>
+    <div id="searchbar">
+        <input class="searchbar" type="text" placeholder="Rechercher un ingrédient, un ustensile, un appareil ou une recette"><i class="fas fa-search"></i>
+    </div>
 </header>
+<main>
+    <section id="card__container">
+        <article class="card">
+            <div class="card__img--placeholder">
+
+            </div>
+            <div class="card__container">
+                <div class="card__details">
+                    <h2 class="card__details--title">Limonade de coco</h2>
+                    <div class="card__details--time"><i class="far fa-clock"></i> 10 min </div>
+                </div>
+            </div>
+        </article>
+    </section>
+</main>
 </body>
+<script src="js/script.js"></script>
 </html>

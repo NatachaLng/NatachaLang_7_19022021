@@ -12,13 +12,71 @@ a {
 ul, li {
   list-style: none; }
 
-header {
+.logo__container {
   width: 100%;
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex-wrap: wrap; }
 
 .header__logo {
   margin-top: 20px;
   width: 260px; }
+
+#searchbar {
+  margin-top: 15px;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-content: center; }
+
+.searchbar {
+  width: 80%;
+  background-color: #E7E7E7;
+  height: 69px;
+  border-radius: 5px;
+  box-shadow: none; }
+
+.fa-search {
+  font-size: 40px;
+  margin-left: -60px;
+  position: relative;
+  z-index: 2;
+  margin-top: 15px;
+  color: #C7BEBE; }
+
+main {
+  margin-left: 10%;
+  margin-right: 10%;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between; }
+
+.card {
+  height: 364px;
+  width: 380px;
+  border: 5px;
+  display: flex;
+  align-items: center;
+  background: #E7E7E7;
+  margin-top: 20px;
+  margin-bottom: 20px; }
+
+.card__img--placeholder {
+  height: 178px;
+  width: 100%;
+  background: #C7BEBE;
+  border-top-left-radius: 5px;
+  border-top-right-radius: 5px; }
+
+.card__container {
+  height: 186px;
+  background: #E7E7E7; }
+
+.card__details {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 100%; }
 
 /*# sourceMappingURL=stylesheets.css.map */
