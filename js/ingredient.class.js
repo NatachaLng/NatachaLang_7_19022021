@@ -14,7 +14,7 @@ class Ingredient{
     }
 
     getHTML(){
-        let template = `<li class="card__recipes--ingredient">${this.ingredient} <span class="card__recipes--quantity">${this.quantity}${this.unit}</span></li>`
+        let template = `<li class="card__recipes--ingredient">${this.ingredient}: <span class="card__recipes--quantity">${this.quantity}${this.unit}</span></li>`
         return template
     }
 

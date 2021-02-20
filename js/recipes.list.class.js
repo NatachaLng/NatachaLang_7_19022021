@@ -13,7 +13,6 @@ class RecipesList {
      */
     init() {
         this.getRecipes();
-        //this.getIngredients();
         this.createCards();
     }
 
