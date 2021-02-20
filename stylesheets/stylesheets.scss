@@ -64,7 +64,7 @@ ul, li{
   color: $darkgrey;
 }
 
-main{
+#card__reciper--list{
   margin-left: 10%;
   margin-right: 10%;
   display: flex;
@@ -105,8 +105,12 @@ main{
   width: 360px;
 }
 
+.card__details--time{
+  min-width: 25%;
+}
+
 h2{
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .card__recipe{
@@ -117,13 +121,14 @@ h2{
 }
 
 .card__recipes--details{
-  max-width: 45%;
+  max-width: 35%;
   font-size: 12px;
-  margin-left: -60px;
+  margin-left: -30px;
 }
 
 .card__recipes--ingredient{
   font-weight: bold;
+  width: 140px;
 }
 
 .card__recipes--quantity{
@@ -132,7 +137,10 @@ h2{
 
 .card__recipes--explanation{
   font-family: Roboto;
-  width: 45%;
+  max-width: 55%;
   font-size: 12px;
-  text-align: justify;
+  height: 125px;
+  white-space: normal;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }

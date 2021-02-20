@@ -16,7 +16,6 @@ class Database {
     async load() {
         let response = await fetch(this.url);
         let json = await response.json();
-
         this.saveDatabase(json);
     }
 

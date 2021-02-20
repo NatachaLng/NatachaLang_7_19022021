@@ -16,10 +16,10 @@ class Recipes {
             this.id = id;
             this.name = name;
             this.servings = servings;
-            this.ingredients = new Ingredient()
+            this.ingredients = ingredients
             this.time = time;
             this.description = description;
-            this.appliance = applicance;
+            this.appliance = appliance;
             this.ustensils = ustensils
     }
 
@@ -36,7 +36,7 @@ class Recipes {
                 </div>
                 <div class="card__recipe">
                     <ul class="card__recipes--details">
-                    
+                        ${this.ingredients.map(ingredient => `<li class="card__recipes--ingredient">${ingredient.ingredient} <span class="card__recipes--quantity">${ingredient.quantity} ${ingredient.unit}</span></li>`).join('')}
                        </ul>
                     <div class="card__recipes--explanation">${this.description}</div>
                 </div>

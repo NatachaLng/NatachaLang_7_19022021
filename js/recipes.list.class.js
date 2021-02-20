@@ -25,7 +25,7 @@ class RecipesList {
 
     getRecipes() {
         let recipes = new Array;
-        for (let p of this.db.getDatas().photographers) {
+        for (let p of this.db.getDatas().recipes) {
             let allRecipes = new Recipes(
                 p.id,
                 p.name,
