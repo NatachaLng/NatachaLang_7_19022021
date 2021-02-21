@@ -34,7 +34,7 @@
       "time": 10,
       "description": "Mettre les glaçons à votre goût dans le blender, ajouter le lait, la crème de coco, le jus de 2 citrons et le sucre. Mixer jusqu'à avoir la consistence désirée",
       "appliance": "Blender",
-      "ustensils": ["cuillère à Soupe", "verres", "presse citron" ]
+      "ustensils": ["cuillère à soupe", "verres", "presse citron" ]
     },
     {
       "id": 2,
@@ -389,7 +389,7 @@
       "time": 60,
       "description": "Commencer par cuire les pommes de terre dans l'eau bouillante. Puis epluchez les et coupez les en rondelles. Emincer les oignons puis les faire dorer dans du beurre. Ajouter le jambon fumé coupé en en morceaux ainsi que les pommes de terres. Salez, poivrez à votre gout ( et celui de vos convives ) Laissez cuisiner durant environ 10 minutes puis ajouter le vin blanc. Après 5 minutes, mettre le tout dans un plat à gratin. Coupez le rebelochon, soit en tranches, soit le couper en 2 dans le sens de l'épaisseur et recouvrir les pommes de terre. Cuire au four (environ 220°) durant 25 minutes. C'est prêt !",
       "appliance":"Four",
-      "ustensils": ["plat à gratin", "couteau","Économe"]
+      "ustensils": ["plat à gratin", "couteau","économe"]
     },{
       "id": 11,
       "name": "Salade tomate, mozzarella et pommes",
@@ -789,7 +789,7 @@
       "time": 30,
       "description":"Cuisiner la viande hachée dans une poelle à frire. Dans une autre faire cuire les oignons découpés en fins dés avec un peu de beurre. Ajouter du vin rouge. Mélanger les oigons avec la viande hachée. Faire cuire les pates le temps indiqué sur le paquet. Ajouter le coulis de tomates à la viande hachée. Une fois que les pates sont cuites, ajouter la crème fraiche à la viande hachée. Serivir.",
       "appliance": "Casserolle.",
-      "ustensils":["Cuillère en bois", "louche", "couteau"]
+      "ustensils":["cuillère en bois", "louche", "couteau"]
     },
     {
       "id": 22,
@@ -1147,7 +1147,7 @@
       "time": 60,
       "description":"Découper en cubes les carottes et pommes de terre. Faire revenir dans du beurre. Ajouter les lardons, une fois les lardons dorés, ajouter un grand verre d'eau. Ajouter les petit poids et les haricots verts ( tous deux pré cuits ). Ajouter Sel, poivre, thyms et laurier",
       "appliance": "Poële",
-      "ustensils":["Couteau", "économe"]
+      "ustensils":["couteau", "économe"]
     },
     {
       "id": 32,
@@ -1409,7 +1409,7 @@
       "time": 20,
       "description":"Fouettez les oeufs, le sucre et le lait. tremper les tranches de pain. Le cuire au four pendant environ 10 minutes à 180°. Servir",
       "appliance": "Four",
-      "ustensils":["fouet", "bol","Cuillère à Soupe"]
+      "ustensils":["fouet", "bol","cuillère à soupe"]
     },
     {
       "id": 39,
