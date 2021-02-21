@@ -6,11 +6,13 @@ class RecipesList {
     constructor(selector_id_list, db) {
         this.selector_id_list = selector_id_list;
         this.db = db;
+        this.ingredientList = new Array();
     }
 
     /**
      * Init to load Datas and others event
      */
+
     init() {
         this.getRecipes();
         this.createCards();
@@ -34,7 +36,7 @@ class RecipesList {
                 p.description,
                 p.appliance,
                 p.ustensils)
-            recipes.push(allRecipes)
+            recipes.push(allRecipes);
         }
         return recipes;
     }
@@ -48,6 +50,10 @@ class RecipesList {
         for (let i = 0; i < recipes.length; i++) {
             document.querySelector(this.selector_id_list).innerHTML += recipes[i].getCardHTML();
         }
+    }
+
+    getIngredientList (){
+
     }
 
 }

@@ -1,21 +1,9 @@
-class Ingredient{
-
+class Ingredient {
     /**
      *
-     * @param ingredient
-     * @param quantity
-     * @param unit
+     * @param tags
      */
-
-    constructor(ingredient, quantity, unit) {
+    constructor(ingredient) {
         this.ingredient = ingredient;
-        this.quantity = quantity;
-        this.unit = unit
     }
-
-    getHTML(){
-        let template = `<li class="card__recipes--ingredient">${this.ingredient}: <span class="card__recipes--quantity">${this.quantity}${this.unit}</span></li>`
-        return template
-    }
-
 }

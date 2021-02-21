@@ -607,7 +607,7 @@
           "unit":"tiges"
         },
         {
-          "ingredient": "huile d'olives",
+          "ingredient": "Huile d'olive",
           "quantity": 2,
           "unit": "cuillère à soupe"
         }
@@ -740,7 +740,7 @@
           "unit":"g"
         },
         {
-          "ingredient": "huile d'olive",
+          "ingredient": "Huile d'olive",
           "quantity": 1,
           "unit": "cuillères à soupe"
         }
@@ -961,7 +961,7 @@
           "unit" : ""
         },
         {
-          "ingredient": "Huile d'olives",
+          "ingredient": "Huile d'olive",
           "quantity" : "",
           "unit" : ""
         },
@@ -1355,7 +1355,7 @@
           "unit": "g"
         },
         {
-          "ingredient": "Huile d'olives",
+          "ingredient": "Huile d'olive",
           "quantity": 25,
           "unit": "cl"
         },
