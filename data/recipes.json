@@ -67,7 +67,7 @@
           "unit" : ""
         },
         {
-          "ingredient" : "Lait de Coco",
+          "ingredient" : "Lait de coco",
           "quantity" : 100,
           "unit" : "ml"
         }
@@ -177,12 +177,12 @@
           "unit" : ""
         },
         {
-          "ingredient": "Crème fraiche",
+          "ingredient": "Crème fraîche",
           "quantity": 2,
           "unit": "cuillères à soupe"
         },
         {
-          "ingredient": "gruyère râpé",
+          "ingredient": "Gruyère râpé",
           "quantity": 100,
           "unit": "g"
         },
@@ -218,7 +218,7 @@
           "unit" : ""
         },
         {
-          "ingredient":"Crème fraiche",
+          "ingredient":"Crème fraîche",
           "quantity":25,
           "unit": "cl"
         },
@@ -303,7 +303,7 @@
           "unit": "g"
         },
         {
-          "ingredient": "farine",
+          "ingredient": "Farine",
           "quantity": 90,
           "unit": "g"
         }
@@ -730,7 +730,7 @@
           "unit": "g"
         },
         {
-          "ingredient": "Crème fraiche",
+          "ingredient": "Crème fraîche",
           "quantity": 200,
           "unit": "g"
         },
@@ -781,7 +781,7 @@
           "unit": "cl"
         },
         {
-          "ingredient": "Crème Fraiche",
+          "ingredient": "Crème fraîche",
           "quantity" : 1,
           "unit": "cuillères à soupe"
         }
@@ -853,7 +853,7 @@
           "unit" : ""
         },
         {
-          "ingredient": "Crème Fraîche",
+          "ingredient": "Crème fraîche",
           "quantity": 20,
           "unit": "cl"
         },
@@ -1592,7 +1592,7 @@
           "unit":"g"
         },
         {
-          "ingredient": "farine",
+          "ingredient": "Farine",
           "quantity": 40,
           "unit": "g"
         }
@@ -1792,7 +1792,7 @@
           "unit" : ""
         },
         {
-          "ingredient": "Poudre d'amendes",
+          "ingredient": "Poudre d'amandes",
           "quantity": 500,
           "unit": "g"
         },
