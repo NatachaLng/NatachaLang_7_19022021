@@ -11,6 +11,7 @@ class IngredientList {
         console.log('init()');
         this.allIngredientList();
         this.cleanIngredientList();
+        this.sortByAlphabeticOrder()
     }
 
     allIngredientList() {
@@ -38,4 +39,12 @@ class IngredientList {
             console.log(uniqueIngredient)
             return uniqueIngredient;
         }
+
+    sortByAlphabeticOrder(){
+        let allIngredientsList = this.cleanIngredientList()
+        allIngredientsList.sort(function (a, b) {
+            return a.ingredient.localeCompare(b.ingredient);
+        });
+        console.log(allIngredientsList)
+    }
 }

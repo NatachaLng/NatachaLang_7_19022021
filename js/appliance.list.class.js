@@ -10,6 +10,7 @@ class ApplianceList {
     init() {
         this.allAppliancesList();
         this.cleanAppliancesList();
+        this.sortByAlphabeticOrder();
     }
 
     allAppliancesList() {
@@ -33,4 +34,12 @@ class ApplianceList {
             console.log(uniqueAppliance)
             return uniqueAppliance;
         }
+
+        sortByAlphabeticOrder(){
+            let allAppliancesList = this.cleanAppliancesList()
+            allAppliancesList.sort(function (a, b) {
+                return a.appliance.localeCompare(b.appliance);
+        });
+        console.log(allAppliancesList)
+}
 }

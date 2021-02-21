@@ -10,6 +10,7 @@ class UstensilList {
     init() {
         this.allUstensilsList();
         this.cleanUstensilsList();
+        this.sortByAlphabeticOrder();
     }
 
     allUstensilsList() {
@@ -36,4 +37,12 @@ class UstensilList {
             console.log(uniqueUstensil)
             return uniqueUstensil;
         }
+
+    sortByAlphabeticOrder(){
+        let allUstensilsList = this.cleanUstensilsList()
+        allUstensilsList.sort(function (a, b) {
+            return a.ustensil.localeCompare(b.ustensil);
+        });
+        console.log(allUstensilsList)
+    }
 }
