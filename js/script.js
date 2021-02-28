@@ -10,7 +10,7 @@ let dbRecipes= new Database("https://natachalng.github.io/NatachaLang_7_19022021
 dbRecipes.load().then(
     function () {
         Page = new RecipesList("#card__reciper--list", dbRecipes);
-        ingredientList = new IngredientList(dbRecipes);
+        ingredientList = new IngredientList("#ingredient__list",dbRecipes);
         ustensilList = new UstensilList(dbRecipes);
         applianceList = new ApplianceList(dbRecipes);
         Page.init();

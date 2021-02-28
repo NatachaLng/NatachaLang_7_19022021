@@ -24,6 +24,10 @@ a
   color: black;
 }
 
+h2{
+  margin-top: 0;
+}
+
 ul, li{
   list-style: none;
 }
@@ -70,11 +74,130 @@ ul, li{
   background-color: $blue;
 }
 
-.filter__search{
-  border: none;
-  color: white;
-  background-color: transparent;
+/*filter section*/
+
+.filter__section{
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  width: 80%;
+  margin-left: 10%;
 }
+
+.dropbtn {
+  background-color: transparent;
+  border-top-right-radius: 5px;
+  border-bottom-right-radius: 5px;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+
+
+.dropOne{
+  border-top-left-radius: 5px;
+  border-top-right-radius: 0;
+  border-bottom-left-radius: 5px;
+  border-bottom-right-radius: 0;
+  width: 170px;
+}
+
+#dropdown__ingredient{
+  background-color: $blue;
+}
+
+#dropbtn__ingredient
+{
+  background-color: $blue;
+}
+
+.dropbtn:hover + .dropbtn {
+  color: black;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  height: 53px;
+  margin-left: 20px;
+}
+
+.dropdown__trigered{
+  display: none;
+  width: 40vw;
+  z-index: 2;
+}
+
+#myDropDown__Ingredients
+{
+  background-color: $blue;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  overflow: auto;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  border-bottom-right-radius: 5px;
+  border-bottom-left-radius: 5px;
+}
+
+.dropdown-content a {
+  border-top: 2px solid white;
+  color: white;
+  padding-top: 16px;
+  padding-bottom: 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.droptext
+{
+  margin-top: 0;
+  margin-bottom: 0;
+  margin-left: 15px;
+}
+
+.filter__list{
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  width: 40vw;
+  max-height: 400px;
+}
+
+.list__items{
+  width: 150px;
+  color: white;
+  margin: 10px;
+}
+
+.triger{
+  height: 53px;
+  width: 50px;
+  margin-left: -50px;
+  position: absolute;
+  font-size: 24px;
+}
+
+.triger__content
+{
+  color: white;
+  text-align: center;
+  transform: rotate(90deg);
+  margin-top: -5px;
+  display: block;
+}
+
+
+.show {
+  display: block;
+}
+
 
 
 #card__reciper--list{
@@ -83,7 +206,7 @@ ul, li{
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 .card{
@@ -91,8 +214,6 @@ ul, li{
   min-width: 30%;
   max-width: 400px;
   border: 5px;
-  display: flex;
-  align-items: center;
   background: $lightgrey;
   margin:20px;
 }

@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css" integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
     <link href="stylesheets/stylesheets.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2b64b48d7b.js"></script>
     <script src="js/database.class.js"></script>
+    <script src="js/dropdown.list.js"></script>
     <script src="js/recipes.class.js"></script>
     <script src="js/recipes.list.class.js"></script>
     <script src="js/ingredient.class.js"></script>
@@ -27,33 +27,17 @@
     </div>
 </header>
 <main>
-    <div class="filter__section">
-        <div class="btn-group">
-            <button type="button" class="btn btn-ingredient dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
-                <input class="filter__search" type="text" placeholder="Ingrédients">
-            </button>
-            <ul class="dropdown-menu" id="dropdown-ingredients">
-                <li><a class="dropdown-item" href="#">Action</a></li>
-                <li><a class="dropdown-item" href="#">Another action</a></li>
-                <li><a class="dropdown-item" href="#">Something else here</a></li>
-                <li><hr class="dropdown-divider"></li>
-                <li><a class="dropdown-item" href="#">Separated link</a></li>
-            </ul>
+    <div class='filter__section'>
+        <div class="dropdown" id="dropdown__ingredient">
+            <input class="dropbtn dropOne" type="text" placeholder="Ingredients"> <button onclick="openDropdownIngredients()" class="dropbtn triger" id="dropbtn__ingredient" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content" onclick="openDropdownIngredients()">></span></button>
+            <div class="dropdown__trigered" id="dropdown__trigered--ingredient"><input class="dropbtn dropOne"  type="text" placeholder="Rechercher un ingrédient"> <button class="dropbtn triger" id="dropbtn__ingredient" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content">></span></button></div>
+            <div class="myDropdown dropdown-content" id="myDropDown__Ingredients">
+                <ul class= "filter__list" id="ingredient__list">
+                <li class="list__items">Poisson</li>
+                <li class="list__items">Coco</li>
+                </ul>
+            </div>
         </div>
-    </div>
-    <!-- Example split danger button -->
-    <div class="btn-group">
-        <button type="button" class="btn btn-danger">Action</button>
-        <button type="button" class="btn btn-danger dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
-            <span class="visually-hidden">Toggle Dropdown</span>
-        </button>
-        <ul class="dropdown-menu">
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
-            <li><a class="dropdown-item" href="#">Something else here</a></li>
-            <li><hr class="dropdown-divider"></li>
-            <li><a class="dropdown-item" href="#">Separated link</a></li>
-        </ul>
     </div>
 
     <section id="card__reciper--list">
@@ -61,6 +45,5 @@
     </section>
 </main>
 </body>
-<script src="js/bootstrap/bootstrap.bundle.min.js"></script>
 <script src="js/script.js"></script>
 </html>
