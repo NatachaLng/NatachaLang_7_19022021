@@ -15,7 +15,8 @@ h2 {
   margin-top: 0; }
 
 ul, li {
-  list-style: none; }
+  list-style: none;
+  margin: 0; }
 
 .logo__container {
   width: 100%;
@@ -134,7 +135,11 @@ ul, li {
 .list__items {
   width: 150px;
   color: white;
-  margin: 10px; }
+  padding: 10px;
+  border-radius: 5px; }
+
+.list__items:hover {
+  background-color: #4b91f8; }
 
 .triger {
   height: 53px;
@@ -163,15 +168,15 @@ ul, li {
 
 .card {
   height: 364px;
-  min-width: 30%;
-  max-width: 400px;
+  min-width: 320px;
+  width: 25%;
+  max-width: 450px;
   border: 5px;
   background: #E7E7E7;
   margin: 20px; }
 
 .card__img--placeholder {
   height: 178px;
-  min-width: 360px;
   width: 100%;
   background: #C7BEBE;
   border-top-left-radius: 5px;
@@ -179,7 +184,6 @@ ul, li {
 
 .card__container {
   height: 186px;
-  min-width: 360px;
   width: 100%;
   background: #E7E7E7; }
 
@@ -218,9 +222,10 @@ h2 {
 
 .card__recipes--explanation {
   font-family: Roboto;
-  max-width: 55%;
+  max-width: 50%;
   font-size: 12px;
   height: 125px;
+  margin-left: 5px;
   white-space: normal;
   overflow: hidden;
   text-overflow: ellipsis; }

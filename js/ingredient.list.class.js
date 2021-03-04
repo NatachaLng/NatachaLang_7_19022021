@@ -63,4 +63,20 @@ class IngredientList {
         }
 
     }
+
+    filterRecipes(text) {
+        document.querySelector("#card__reciper--list").innerHTML = "";
+        let recipes = Page.getRecipes();
+        console.log(recipes)
+            for (let i = 0; i < recipes.length; i++) {
+                let ingredients = recipes[i].ingredients;
+                for (let j = 0; j < ingredients.length; j++){
+                    let tags = ingredients[j].ingredient
+                        let isMatch = (tags.indexOf(text) != -1)
+                    if (isMatch) {
+                        document.querySelector("#card__reciper--list").innerHTML += recipes[i].getCardHTML();
+                    }
+                }
+            }
+        }
 }
