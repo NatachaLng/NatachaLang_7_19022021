@@ -13,7 +13,7 @@ class ApplianceList {
         this.allAppliancesList();
         this.cleanAppliancesList();
         this.sortByAlphabeticOrder();
-        this.createApplianceList();
+        this.createApplianceList(this.cleanAppliancesList());
         this.applianceSearchBar();
     }
 
@@ -48,22 +48,20 @@ class ApplianceList {
     /**
      * Create the list from the clean list
      */
-    createApplianceList() {
-        let applianceList = this.cleanAppliancesList();
-        for (let i = 0; i < applianceList.length; i++) {
-            document.querySelector(this.selector_id_list).innerHTML += applianceList[i].getApplianceHTML();
+    createApplianceList(array) {
+        for (let i = 0; i < array.length; i++) {
+            document.querySelector(this.selector_id_list).innerHTML += array[i].getApplianceHTML();
         }
 
     }
 
     filterByAppliance(text) {
-        let normalizeText = text.toLowerCase();
         document.querySelector("#card__reciper--list").innerHTML = "";
         document.querySelector("#appliance__tag").innerHTML = `<div class="appliance tag">${text}<button name="close tag" class="tag__btn" onclick="applianceList.filterByAppliance('all')"><i class="far fa-times-circle"></i></button> </div>`
         if (text !== 'all') {
             for (let i = 0; i < this.recipes.length; i++) {
                 let tags = this.recipes[i].appliance;
-                    let isMatch = (tags.indexOf(normalizeText) != -1)
+                    let isMatch = (tags.indexOf(text) != -1)
                     if (isMatch) {
                         document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
                     }
@@ -74,12 +72,24 @@ class ApplianceList {
                 document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
             }
         }
+        let searchBar = document.querySelector("#input__appliance");
+        searchBar.value = "";
         return this.recipes
     }
 
     applianceSearchBar() {
         let searchBar = document.querySelector("#input__appliance");
         searchBar.addEventListener('click', openDropdownAppliances);
+        searchBar.addEventListener("keyup", e => {
+            let searchStringBar = e.target.value.toLowerCase();
+            const filteredAppliances = this.cleanAppliancesList().filter(appliance => {
+                return (
+                    appliance.appliance.toLowerCase().includes(searchStringBar)
+                );
+            });
+            document.querySelector(this.selector_id_list).innerHTML = "";
+            this.createApplianceList(filteredAppliances);
+        });
         searchBar.addEventListener('keydown', function(e){
             if (13 == e.keyCode){
                 let searchString = e.target.value.toLowerCase();

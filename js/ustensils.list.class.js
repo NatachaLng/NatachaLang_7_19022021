@@ -13,7 +13,7 @@ class UstensilList {
         this.allUstensilsList();
         this.cleanUstensilsList();
         this.sortByAlphabeticOrder();
-        this.createUstensilList();
+        this.createUstensilList(this.cleanUstensilsList());
         this.ustensilSearchBar();
     }
 
@@ -51,10 +51,9 @@ class UstensilList {
     /**
      * Create the list from the clean list
      */
-    createUstensilList() {
-        let ustensilList = this.cleanUstensilsList();
-        for (let i = 0; i < ustensilList.length; i++) {
-            document.querySelector(this.selector_id_list).innerHTML += ustensilList[i].getUstensilHTML();
+    createUstensilList(array) {
+        for (let i = 0; i < array.length; i++) {
+            document.querySelector(this.selector_id_list).innerHTML += array[i].getUstensilHTML();
         }
 
     }
@@ -79,12 +78,25 @@ class UstensilList {
                 document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
             }
         }
+        let searchBar = document.querySelector("#input__ustensils");
+        searchBar.value = "";
         return this.recipes
     }
 
     ustensilSearchBar() {
+        console.log(this.cleanUstensilsList())
         let searchBar = document.querySelector("#input__ustensils");
         searchBar.addEventListener('click', openDropdownUstensils);
+        searchBar.addEventListener("keyup", e => {
+            let searchStringBar = e.target.value.toLowerCase();
+            const filteredUstensils = this.cleanUstensilsList().filter(ustensil => {
+                return (
+                    ustensil.ustensil.toLowerCase().includes(searchStringBar)
+                );
+            });
+            document.querySelector(this.selector_id_list).innerHTML = "";
+            this.createUstensilList(filteredUstensils);
+        });
         searchBar.addEventListener('keydown', function(e){
             if (13 == e.keyCode){
                 let searchString = e.target.value.toLowerCase();

@@ -61,7 +61,6 @@ class IngredientList {
     }
 
     filterByIngredient(text) {
-        let normalizeText = text.toLowerCase();
         document.querySelector("#card__reciper--list").innerHTML = "";
         document.querySelector("#ingredient__tag").innerHTML = `<div class="ingredient tag">${text}<button name="close tag" class="tag__btn" onclick="ingredientList.filterByIngredient('all')"><i class="far fa-times-circle"></i></button> </div>`
         if (text !== 'all') {
@@ -69,7 +68,7 @@ class IngredientList {
                 let ingredients = this.recipes[i].ingredients;
                 for (let j = 0; j < ingredients.length; j++) {
                     let tags = ingredients[j].ingredient
-                    let isMatch = (tags.indexOf(normalizeText) != -1)
+                    let isMatch = (tags.indexOf(text) != -1)
                     if (isMatch) {
                         document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
                     }
@@ -81,12 +80,24 @@ class IngredientList {
                 document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
             }
         }
+        let searchBar = document.querySelector("#input__ingredient");
+        searchBar.value = "";
         return this.recipes
     }
 
     ingredientSearchBar() {
         let searchBar = document.querySelector("#input__ingredient");
         searchBar.addEventListener('click', openDropdownIngredients);
+        searchBar.addEventListener("keyup", e => {
+            let searchStringBar = e.target.value.toLowerCase();
+            const filteredIngredients = this.cleanIngredientList().filter(ingredient => {
+                return (
+                    ingredient.ingredient.toLowerCase().includes(searchStringBar)
+                );
+            });
+            document.querySelector(this.selector_id_list).innerHTML = "";
+            this.createIngredientList(filteredIngredients);
+        });
         searchBar.addEventListener('keydown', function(e){
             if (13 == e.keyCode){
                 let searchString = e.target.value.toLowerCase();
