@@ -11,7 +11,7 @@ class Ingredient {
      * Get Card HTML
      * @returns {string}
      */
-    getHTML() {
-        return `<li class="list__items ingredient__tag" id="${this.ingredient}" onclick="ingredientList.filterRecipes('${this.ingredient}')">${this.ingredient}</li>`;
+    getIngredientHTML() {
+        return `<li class="list__items ingredient__tag" id="${this.ingredient}" onclick="ingredientList.filterByIngredient('${this.ingredient}')">${this.ingredient}</li>`;
     }
 }

@@ -75,12 +75,55 @@ ul, li{
   background-color: $blue;
 }
 
+/*selected taglist*/
+
+#selected__taglist{
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  width: 80%;
+  margin-left: 10%;
+}
+
+.tag{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+}
+
+.ingredient{
+  background-color: $blue;
+}
+
+.ustensil{
+  background-color: $red;
+}
+
+.appliance{
+  background-color: $green;
+}
+
+.tag__btn{
+  background-color: transparent;
+  margin: 5px;
+  border: none;
+}
+
+.fa-times-circle{
+  color: white;
+  font-size: 16px;
+}
+
 /*filter section*/
 
 .filter__section{
   display: flex;
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: 10px;
   width: 80%;
   margin-left: 10%;
 }
@@ -96,7 +139,9 @@ ul, li{
   cursor: pointer;
 }
 
-
+.dropdown{
+  border-radius: 5px;
+}
 
 .dropOne{
   border-top-left-radius: 5px;
@@ -106,6 +151,11 @@ ul, li{
   width: 170px;
 }
 
+.active{
+  width: 600px;
+}
+
+
 #dropdown__ingredient{
   background-color: $blue;
 }
@@ -113,6 +163,22 @@ ul, li{
 #dropbtn__ingredient
 {
   background-color: $blue;
+}
+
+#dropdown__ustensil{
+  background-color: $red;
+}
+
+#dropbtn__ustensil{
+  background-color: $red;
+}
+
+#dropdown__appliance{
+  background-color: $green;
+}
+
+#dropbtn__appliance {
+  background-color: $green;
 }
 
 .dropbtn:hover + .dropbtn {
@@ -128,13 +194,23 @@ ul, li{
 
 .dropdown__trigered{
   display: none;
-  width: 40vw;
+  width: 600px;
   z-index: 2;
 }
 
 #myDropDown__Ingredients
 {
   background-color: $blue;
+}
+
+#myDropDown__Ustensils
+{
+  background-color: $red;
+}
+
+#myDropDown__Appliances
+{
+  background-color: $green;
 }
 
 .dropdown-content {
@@ -165,9 +241,7 @@ ul, li{
 
 .filter__list{
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  width: 40vw;
   max-height: 400px;
 }
 
@@ -180,7 +254,7 @@ ul, li{
 
 .list__items:hover
 {
-  background-color: lighten($blue, 5%);
+  background-color: rgba(white, 10%);
 }
 
 .triger{
@@ -220,7 +294,7 @@ ul, li{
   height: 364px;
   min-width: 320px;
   width: 25%;
-  max-width: 450px;
+  max-width: 550px;
   border: 5px;
   background: $lightgrey;
   margin:20px;

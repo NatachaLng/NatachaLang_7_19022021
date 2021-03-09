@@ -11,8 +11,8 @@ dbRecipes.load().then(
     function () {
         Page = new RecipesList("#card__reciper--list", dbRecipes);
         ingredientList = new IngredientList("#ingredient__list",dbRecipes);
-        ustensilList = new UstensilList(dbRecipes);
-        applianceList = new ApplianceList(dbRecipes);
+        ustensilList = new UstensilList("#ustensil__list", dbRecipes);
+        applianceList = new ApplianceList("#appliance__list", dbRecipes);
         Page.init();
         ingredientList.init();
         ustensilList.init();

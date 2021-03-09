@@ -6,6 +6,7 @@
     <link href="stylesheets/stylesheets.css" rel="stylesheet" type="text/css">
     <script src="https://kit.fontawesome.com/2b64b48d7b.js"></script>
     <script src="js/database.class.js"></script>
+    <script src="js/main.searchbar.js"></script>
     <script src="js/dropdown.list.js"></script>
     <script src="js/recipes.class.js"></script>
     <script src="js/recipes.list.class.js"></script>
@@ -23,17 +24,45 @@
         <img class="header__logo" src="images/logo_les_petits_plats.png" href="index.html" alt="logo les petits plats">
     </div>
     <div id="searchbar">
-        <input class="searchbar" type="text" placeholder="Rechercher un ingrédient, un ustensile, un appareil ou une recette"><i class="fas fa-search"></i>
+        <input class="searchbar" id='mainSearchBar' type="text" placeholder="Rechercher un ingrédient, un ustensile, un appareil ou une recette"><i class="fas fa-search"></i>
     </div>
 </header>
 <main>
-    <div id="selected__taglist"></div>
+    <div id="selected__taglist">
+        <div id="ingredient__tag">
+
+        </div>
+        <div id="ustensil__tag">
+
+        </div>
+        <div id="appliance__tag">
+
+        </div>
+    </div>
     <div class='filter__section'>
         <div class="dropdown" id="dropdown__ingredient">
-            <input class="dropbtn dropOne" type="text" placeholder="Ingredients"> <button onclick="openDropdownIngredients()" class="dropbtn triger" id="dropbtn__ingredient" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content" onclick="openDropdownIngredients()">></span></button>
+            <input class="dropbtn dropOne" id="input__ingredient" type="text" placeholder="Ingredients"> <button onclick="openDropdownIngredients()" class="dropbtn triger" id="dropbtn__ingredient" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content" onclick="openDropdownIngredients()">></span></button>
             <div class="dropdown__trigered" id="dropdown__trigered--ingredient"><input class="dropbtn dropOne"  type="text" placeholder="Rechercher un ingrédient"> <button class="dropbtn triger" id="dropbtn__ingredient" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content">></span></button></div>
             <div class="myDropdown dropdown-content" id="myDropDown__Ingredients">
                 <ul class= "filter__list" id="ingredient__list">
+
+                </ul>
+            </div>
+        </div>
+        <div class="dropdown" id="dropdown__ustensil">
+            <input class="dropbtn dropOne" type="text" id="input__ustensils" placeholder="Ustensils"> <button onclick="openDropdownUstensils()" class="dropbtn triger" id="dropbtn__ustensil" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content" onclick="openDropdownUstensils()">></span></button>
+            <div class="dropdown__trigered" id="dropdown__trigered--ustensil"><input class="dropbtn dropOne"  type="text" placeholder="Rechercher un ustensil"> <button class="dropbtn triger" id="dropbtn__ustensil" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content">></span></button></div>
+            <div class="myDropdown dropdown-content" id="myDropDown__Ustensils">
+                <ul class= "filter__list" id="ustensil__list">
+
+                </ul>
+            </div>
+        </div>
+        <div class="dropdown" id="dropdown__appliance">
+            <input class="dropbtn dropOne" type="text" id="input__appliance" placeholder="Appareil"> <button onclick="openDropdownAppliances()" class="dropbtn triger" id="dropbtn__appliance" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content" onclick="openDropdownAppliances()">></span></button>
+            <div class="dropdown__trigered" id="dropdown__trigered--appliance"><input class="dropbtn dropOne"  type="text" placeholder="Rechercher un appareil"> <button class="dropbtn triger" id="dropbtn__appliance" aria-haspopup="listbox" aria-expanded="true"><span class="triger__content">></span></button></div>
+            <div class="myDropdown dropdown-content" id="myDropDown__Appliances">
+                <ul class= "filter__list" id="appliance__list">
 
                 </ul>
             </div>

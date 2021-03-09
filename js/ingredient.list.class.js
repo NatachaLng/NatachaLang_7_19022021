@@ -2,18 +2,19 @@ class IngredientList {
 
     constructor(selector_id_list, db) {
         this.selector_id_list = selector_id_list;
-        this.db = db
+        this.db = db;
+        this.recipes = Page.getRecipes()
     }
 
     /**
      * Init to load Datas and others event
      */
     init() {
-        console.log('init()');
         this.allIngredientList();
         this.cleanIngredientList();
         this.sortByAlphabeticOrder();
-        this.createIngredientList()
+        this.createIngredientList(this.cleanIngredientList());
+        this.ingredientSearchBar();
     }
 
     allIngredientList() {
@@ -27,7 +28,6 @@ class IngredientList {
                     allIngredients.push(ingredient)
                 }
             }
-            console.log(allIngredients)
             return allIngredients;
         }
     }
@@ -38,7 +38,6 @@ class IngredientList {
             .map(ingredient => {
                 return allIngredientsList.find(a => a.ingredient === ingredient)
             })
-        console.log(uniqueIngredient)
         return uniqueIngredient;
     }
 
@@ -47,36 +46,55 @@ class IngredientList {
         allIngredientsList.sort(function (a, b) {
             return a.ingredient.localeCompare(b.ingredient);
         });
-        console.log(allIngredientsList)
     }
-
 
 
     /**
      * Create the list from the clean list
      */
-    createIngredientList() {
-        let ingredientList = this.cleanIngredientList();
-        console.log(ingredientList)
+    createIngredientList(array) {
+        let ingredientList = array;
         for (let i = 0; i < ingredientList.length; i++) {
-            document.querySelector(this.selector_id_list).innerHTML += ingredientList[i].getHTML();
+            document.querySelector(this.selector_id_list).innerHTML += ingredientList[i].getIngredientHTML();
         }
 
     }
 
-    filterRecipes(text) {
+    filterByIngredient(text) {
+        let normalizeText = text.toLowerCase();
         document.querySelector("#card__reciper--list").innerHTML = "";
-        let recipes = Page.getRecipes();
-        console.log(recipes)
-            for (let i = 0; i < recipes.length; i++) {
-                let ingredients = recipes[i].ingredients;
-                for (let j = 0; j < ingredients.length; j++){
+        document.querySelector("#ingredient__tag").innerHTML = `<div class="ingredient tag">${text}<button name="close tag" class="tag__btn" onclick="ingredientList.filterByIngredient('all')"><i class="far fa-times-circle"></i></button> </div>`
+        if (text !== 'all') {
+            for (let i = 0; i < this.recipes.length; i++) {
+                let ingredients = this.recipes[i].ingredients;
+                for (let j = 0; j < ingredients.length; j++) {
                     let tags = ingredients[j].ingredient
-                        let isMatch = (tags.indexOf(text) != -1)
+                    let isMatch = (tags.indexOf(normalizeText) != -1)
                     if (isMatch) {
-                        document.querySelector("#card__reciper--list").innerHTML += recipes[i].getCardHTML();
+                        document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
                     }
                 }
             }
+        } else {
+            document.querySelector("#ingredient__tag").innerHTML = "";
+            for (let i = 0; i < this.recipes.length; i++) {
+                document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
+            }
         }
+        return this.recipes
+    }
+
+    ingredientSearchBar() {
+        let searchBar = document.querySelector("#input__ingredient");
+        searchBar.addEventListener('click', openDropdownIngredients);
+        searchBar.addEventListener('keydown', function(e){
+            if (13 == e.keyCode){
+                let searchString = e.target.value.toLowerCase();
+                console.log(searchString)
+                ingredientList.filterByIngredient(searchString);
+                searchBar.value = "";
+            }
+        })
+    }
+
 }

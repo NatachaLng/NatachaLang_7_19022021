@@ -55,11 +55,46 @@ ul, li {
   color: white;
   background-color: #3282F7; }
 
+/*selected taglist*/
+#selected__taglist {
+  display: flex;
+  flex-direction: row;
+  margin-top: 10px;
+  width: 80%;
+  margin-left: 10%; }
+
+.tag {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  border-radius: 10px;
+  color: white;
+  padding: 10px;
+  margin: 10px; }
+
+.ingredient {
+  background-color: #3282F7; }
+
+.ustensil {
+  background-color: #ED6454; }
+
+.appliance {
+  background-color: #68D9A4; }
+
+.tag__btn {
+  background-color: transparent;
+  margin: 5px;
+  border: none; }
+
+.fa-times-circle {
+  color: white;
+  font-size: 16px; }
+
 /*filter section*/
 .filter__section {
   display: flex;
   flex-direction: row;
-  margin-top: 40px;
+  margin-top: 10px;
   width: 80%;
   margin-left: 10%; }
 
@@ -73,6 +108,9 @@ ul, li {
   border: none;
   cursor: pointer; }
 
+.dropdown {
+  border-radius: 5px; }
+
 .dropOne {
   border-top-left-radius: 5px;
   border-top-right-radius: 0;
@@ -80,11 +118,26 @@ ul, li {
   border-bottom-right-radius: 0;
   width: 170px; }
 
+.active {
+  width: 600px; }
+
 #dropdown__ingredient {
   background-color: #3282F7; }
 
 #dropbtn__ingredient {
   background-color: #3282F7; }
+
+#dropdown__ustensil {
+  background-color: #ED6454; }
+
+#dropbtn__ustensil {
+  background-color: #ED6454; }
+
+#dropdown__appliance {
+  background-color: #68D9A4; }
+
+#dropbtn__appliance {
+  background-color: #68D9A4; }
 
 .dropbtn:hover + .dropbtn {
   color: black; }
@@ -97,11 +150,17 @@ ul, li {
 
 .dropdown__trigered {
   display: none;
-  width: 40vw;
+  width: 600px;
   z-index: 2; }
 
 #myDropDown__Ingredients {
   background-color: #3282F7; }
+
+#myDropDown__Ustensils {
+  background-color: #ED6454; }
+
+#myDropDown__Appliances {
+  background-color: #68D9A4; }
 
 .dropdown-content {
   display: none;
@@ -127,9 +186,7 @@ ul, li {
 
 .filter__list {
   display: flex;
-  flex-direction: column;
   flex-wrap: wrap;
-  width: 40vw;
   max-height: 400px; }
 
 .list__items {
@@ -139,7 +196,7 @@ ul, li {
   border-radius: 5px; }
 
 .list__items:hover {
-  background-color: #4b91f8; }
+  background-color: rgba(255, 255, 255, 0.1); }
 
 .triger {
   height: 53px;
@@ -170,7 +227,7 @@ ul, li {
   height: 364px;
   min-width: 320px;
   width: 25%;
-  max-width: 450px;
+  max-width: 550px;
   border: 5px;
   background: #E7E7E7;
   margin: 20px; }
