@@ -3,7 +3,7 @@ class ApplianceList {
     constructor(selector_id_list, db) {
         this.db = db
         this.selector_id_list = selector_id_list
-        this.recipes = Page.getRecipes();
+        this.recipes = recipeList.getRecipes();
     }
 
     /**

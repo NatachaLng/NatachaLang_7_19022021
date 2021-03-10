@@ -40,6 +40,8 @@ class RecipesList {
         return recipes;
     }
 
+
+
     /**
      * Create Cards from getPhotographers()
      */
@@ -50,7 +52,4 @@ class RecipesList {
             document.querySelector(this.selector_id_list).innerHTML += recipes[i].getCardHTML();
         }
     }
-
-
-
 }

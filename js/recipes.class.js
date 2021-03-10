@@ -44,8 +44,4 @@ class Recipes {
         </article>`;
         return article;
     }
-
-    getIngredientList(){
-
-    }
 }
