@@ -12,6 +12,6 @@ class Ingredient {
      * @returns {string}
      */
     getIngredientHTML() {
-        return `<li class="list__items ingredient__tag" id="${this.ingredient}" onclick="ingredientList.filterByIngredient('${this.ingredient}')">${this.ingredient}</li>`;
+        return `<li class="list__items ingredient__tag" id="${this.ingredient}" onclick="recipeList.filterList('filter', 'ingredient','${this.ingredient}')">${this.ingredient}</li>`;
     }
 }

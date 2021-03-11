@@ -12,6 +12,6 @@ class Appliance {
      * @returns {string}
      */
     getApplianceHTML() {
-        return `<li class="list__items appliance__tag" id="${this.appliance}" onclick="applianceList.filterByAppliance('${this.appliance}')">${this.appliance}</li>`;
+        return `<li class="list__items appliance__tag" id="${this.appliance}" onclick="recipeList.filterList('filter', 'appliance', '${this.appliance}')">${this.appliance}</li>`;
     }
 }
