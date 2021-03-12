@@ -98,38 +98,40 @@ class RecipesList {
                         searchArray[2].splice(applianceIndex, 1);
                         this.filterList(type, applianceTagList);
                 }
-                document.querySelector("#${text}").innerHTML="";
+                document.getElementById(text).innerHTML="";
                 this.filterList(searchArray);
         }
     }
 
     filterList(array) {
+        let filteredlist = this.filteredList;
         document.querySelector("#card__reciper--list").innerHTML = "";
-        let newList
-        for (let i = 0; i < array.length; i++){
-                    switch (type){
-                        case "ingredient":
-                            newList = this.filteredList.filter(recipe => (recipe.name.includes(array[i])));
-                            this.createCards(newList)
-                            this.filteredList = newList;
-                            console.log(this.filteredList)
-                        case "ustensil":
-                            console.log(this.filteredList)
-                            newList = this.filteredList.filter(recipe => (recipe.ustensils.includes(array[i])));
-                            console.log(newList)
-                            this.createCards(newList)
-                            this.filteredList = newList;
-                            console.log(this.filteredList)
-                        case "appliance":
-
-                            console.log(this.filteredList)
-                            newList = this.filteredList.filter(recipe => (recipe.appliance.includes(array[i])));
-                            console.log(newList)
-                            this.createCards(newList)
-                            this.filteredList = newList;
-                            console.log(this.filteredList)
+        let recipeName
+        let recipeIngredients
+        let recipeIngredient
+        let recipeUstensils
+        let recipeUstensil
+        let recipeAppliance
+        let recipeDescription
+        for (let p = 0; p < filteredlist.length; p++){
+            recipeName = filteredlist.name;
+            recipeIngredients = filteredlist.ingredients;
+            recipeUstensils = filteredlist.ustensils;
+            recipeAppliance  = filteredlist.appliance;
+            recipeDescription = filteredlist.description;
+            for (let i = 0; i < array.length; i++){
+                for (let j = 0; j < array[i].length; j++){
+                    let tag = array[i][j];
+                    let isMatch = recipeName.includes(tag) || recipeDescription.includes(tag) || recipeAppliance.includes(tag);
+                    if (isMatch){
+                        document.querySelector("#card__reciper--list").innerHTML = filteredlist[p].getCardHTML();
                     }
+
+                }
             }
+        }
+
+
         }
 
 
