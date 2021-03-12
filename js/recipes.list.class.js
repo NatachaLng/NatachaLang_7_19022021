@@ -10,7 +10,6 @@ class RecipesList {
         this.ingredientTagList = new Array()
         this.ustensilTagList = new Array();
         this.applianceTagList = new Array();
-        this.searchArray = new Array();
     }
 
     /**
@@ -21,7 +20,8 @@ class RecipesList {
         this.getRecipes();
         this.createCards(this.getRecipes());
         this.filteredList =  this.getRecipes()
-        console.log(this.filteredList)
+        console.log(this.filteredList);
+
     }
 
     /**
@@ -60,8 +60,9 @@ class RecipesList {
     }
 
     getFilterTag(fct, type, text) {
+        let searchArray = new Array();
         let ingredientTag = document.querySelector("#ingredient__tag");
-        let ustentilTag = document.querySelector("#ustensil__tag");
+        let ustensilTag = document.querySelector("#ustensil__tag");
         let applianceTag = document.querySelector("#appliance__tag");
         switch (fct) {
             case "filter":
@@ -69,35 +70,48 @@ class RecipesList {
                     case "ingredient":
                         this.ingredientTagList.push(text);
                         ingredientTag.innerHTML = `<div class="ingredient tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ingredient', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
-                        this.searchArray.push(this.ingredientTagList);
+                        this.ustensilTagList.push("");
+                        this.applianceTagList.push("");
                         break
                     case 'ustensil':
                         this.ustensilTagList.push(text);
-                        ustentilTag.innerHTML = `<div class="ustensil tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ustensil', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
-                        this.searchArray.push(this.ustensilTagList);
+                        ustensilTag.innerHTML = `<div class="ustensil tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ustensil', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
+                        this.ingredientTagList.push("");
+                        this.applianceTagList.push("");
                         break
                     case 'appliance':
                         this.applianceTagList.push(text);
                         applianceTag.innerHTML = `<div class="appliance tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'appliance', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
-                        this.searchArray.push(this.applianceTagList)
+                        this.ingredientTagList.push("");
+                        this.applianceTagList.push("");
                 }
-                this.filterList(this.searchArray)
                 break
             case 'defilter':
                 switch (type){
                     case "ingredient":
                         let ingredientIndex = this.ingredientTagList.indexOf(text);
-                        this.searchArray[0].splice(ingredientIndex, 1);
+                        this.ingredientTagList.splice(ingredientIndex, 1);
+                        this.ingredientTagList.push("");
+                        break
                     case 'ustensil':
-                        let ustensilIndex = ustensilTagList.indexOf(text);
-                        this.searchArray[1].splice(ustensilIndex, 1);
+                        let ustensilIndex = this.ustensilTagList.indexOf(text);
+                        this.ustensilTagList.splice(ustensilIndex, 1);
+                        this.ustensilTagList.push("");
+                        break
                     case 'appliance':
-                        let applianceIndex = applianceTagList.indexOf(text);
-                        this.searchArray[2].splice(applianceIndex, 1);
+                        let applianceIndex = this.applianceTagList.indexOf(text);
+                        this.applianceTagList.splice(applianceIndex, 1);
+                        this.applianceTagList.push("");
                 }
-                document.getElementById(text).innerHTML="";
-                this.filterList(this.searchArray);
+                document.getElementById(text).display = "none"
         }
+        searchArray.push(this.ingredientTagList);
+        console.log(this.ingredientTagList)
+        searchArray.push(this.ustensilTagList);
+        console.log(this.ustensilTagList)
+        searchArray.push(this.applianceTagList);
+        console.log(this.applianceTagList)
+        this.filterList(searchArray);
     }
 
     filterList(array) {
@@ -126,12 +140,14 @@ class RecipesList {
                     recipeDescription = filteredlist[p].description;
                     for (let i = 0; i < array.length; i++) {
                         for (let j = 0; j < array[i].length; j++) {
-                            let tag = array[i][j];
-                            isMatch = (recipeName.indexOf(tag) != -1) || (recipeDescription.indexOf(tag) != -1) || (recipeAppliance.indexOf(tag) != -1) || (recipeUstensil.indexOf(tag) != -1) || (recipeIngredient.indexOf(tag) != -1);
+                            let ingredient = array[0][j];
+                            let ustensil = array[1][j];
+                            let appliance = array[2][j]
+                            isMatch = ((recipeName.indexOf(ingredient) != -1) && (recipeName.indexOf(ustensil) != -1) && (recipeName.indexOf(appliance) != -1)) || ((recipeDescription.indexOf(ingredient) != -1) && (recipeDescription.indexOf(ustensil) != -1)) && (recipeDescription.indexOf(appliance) != -1) || ((recipeAppliance.indexOf(ingredient) != -1) && (recipeAppliance.indexOf(ustensil) != -1) && (recipeAppliance.indexOf(appliance) != -1)) || ((recipeUstensil.indexOf(ingredient) != -1) && (recipeUstensil.indexOf(ustensil) != -1) && (recipeUstensil.indexOf(appliance) != -1)) || ((recipeIngredient.indexOf(ingredient) != -1) && (recipeIngredient.indexOf(ustensil) != -1) && (recipeIngredient.indexOf(appliance) != -1));
+                            if (isMatch) {
+                                newList.push(filteredlist[p]);
                         }
-                    }
-                    if (isMatch) {
-                        newList.push(filteredlist[p]);
+                        }
                     }
                 }
             }
