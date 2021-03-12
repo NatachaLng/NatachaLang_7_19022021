@@ -12,6 +12,6 @@ class Ustensil {
      * @returns {string}
      */
     getUstensilHTML() {
-        return `<li class="list__items ustensil" id="${this.ustensil}" onclick="recipeList('filter', 'ustensils', '${this.ustensil}'">${this.ustensil}</li>`;
+        return `<li class="list__items ustensil" id="${this.ustensil}" onclick="recipeList.getFilterTag('filter', 'ustensil', '${this.ustensil}')">${this.ustensil}</li>`;
     }
 }
