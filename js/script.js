@@ -11,7 +11,7 @@ let dbRecipes= new Database("https://natachalng.github.io/NatachaLang_7_19022021
 dbRecipes.load().then(
     function () {
         recipeList = new RecipesList("#card__reciper--list", dbRecipes);
-        filteredRecipeList = new RecipesList ("#card__reciper--list", dbRecipes);
+        filteredRecipeList = new Filter();
         ingredientList = new IngredientList("#ingredient__list",dbRecipes);
         ustensilList = new UstensilList("#ustensil__list", dbRecipes);
         applianceList = new ApplianceList("#appliance__list", dbRecipes);
