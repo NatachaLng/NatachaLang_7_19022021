@@ -13,8 +13,9 @@ class IngredientTag extends Tag {
     }
 
     isEligible(recipe) {
-        for (let i = 0; i < recipe.ingredients.length; i++){
-            if (recipe.ingredients[i].ingredient.indexOf(this.name)) {
+        for (let i = 0; i < recipe.ingredients.length ; i++){
+            let ingredients = recipe.ingredients[i];
+            if (ingredients.ingredient.indexOf(this.name) !== -1) {
                 return true;
                 }
             return false
@@ -57,39 +58,44 @@ class ApplianceTag extends Tag {
 
 }
 
-new Tag().isEligible()
-
-let taglist = []
-let Recipes = recipeList.getRecipes();
-let finalRecipeList = [];
-
 class Filter {
+
+    constructor() {
+        this.recipesFiltered = recipeList.getRecipes();
+        this.taglist = [];
+        this.finalRecipeList = [];
+    }
 
     createTagList(type, text){
         switch (type){
             case "ingredient":
-                taglist.push(new IngredientTag(text));
+                this.taglist.push(new IngredientTag(text));
+                console.log(this.taglist)
                 break;
             case "ustensil":
-                taglist.push(new UstensilTag(text));
+                this.taglist.push(new UstensilTag(text));
+                console.log(this.taglist)
                 break;
             case "appliance":
-                taglist.push(new ApplianceTag(text))
+                this.taglist.push(new ApplianceTag(text))
+                console.log(this.taglist)
                 break;
+            default: throw "error";
         }
         this.filterRecipes();
     }
 
     filterRecipes(){
-        for (let recipe of Recipes) {
+        for (let recipe of this.recipesFiltered) {
             let eligible = true;
-            for (let tag of taglist) {
+            for (let tag of this.taglist) {
                 if (!tag.isEligible(recipe)) {
                     eligible = false;
                 }
-            }
-            if (eligible == true) {
-                finalRecipeList.push(recipe)
+                if (eligible == true) {
+                    this.finalRecipeList.push(recipe)
+                    console.log(this.finalRecipeList)
+                }
             }
         }
     }
