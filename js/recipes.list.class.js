@@ -70,20 +70,14 @@ class RecipesList {
                     case "ingredient":
                         this.ingredientTagList.push(text);
                         ingredientTag.innerHTML = `<div class="ingredient tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ingredient', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
-                        this.ustensilTagList.push("");
-                        this.applianceTagList.push("");
                         break
                     case 'ustensil':
                         this.ustensilTagList.push(text);
                         ustensilTag.innerHTML = `<div class="ustensil tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ustensil', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
-                        this.ingredientTagList.push("");
-                        this.applianceTagList.push("");
                         break
                     case 'appliance':
                         this.applianceTagList.push(text);
                         applianceTag.innerHTML = `<div class="appliance tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'appliance', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
-                        this.ingredientTagList.push("");
-                        this.applianceTagList.push("");
                 }
                 break
             case 'defilter':
@@ -91,73 +85,58 @@ class RecipesList {
                     case "ingredient":
                         let ingredientIndex = this.ingredientTagList.indexOf(text);
                         this.ingredientTagList.splice(ingredientIndex, 1);
-                        this.ingredientTagList.push("");
                         break
                     case 'ustensil':
                         let ustensilIndex = this.ustensilTagList.indexOf(text);
                         this.ustensilTagList.splice(ustensilIndex, 1);
-                        this.ustensilTagList.push("");
                         break
                     case 'appliance':
                         let applianceIndex = this.applianceTagList.indexOf(text);
                         this.applianceTagList.splice(applianceIndex, 1);
-                        this.applianceTagList.push("");
                 }
                 document.getElementById(text).display = "none"
         }
         searchArray.push(this.ingredientTagList);
-        console.log(this.ingredientTagList)
         searchArray.push(this.ustensilTagList);
-        console.log(this.ustensilTagList)
         searchArray.push(this.applianceTagList);
-        console.log(this.applianceTagList)
         this.filterList(searchArray);
     }
 
-    filterList(array) {
-        console.log(array);
-        let filteredlist = this.filteredList;
-        console.log(filteredlist);
-        document.querySelector("#card__reciper--list").innerHTML = "";
-        let recipeName
-        let recipeIngredients
-        let recipeIngredient
-        let recipeUstensils
-        let recipeUstensil
-        let recipeAppliance
-        let recipeDescription
-        let isMatch
-        let newList = [];
-        for (let p = 0; p < filteredlist.length; p++) {
-            recipeName = filteredlist[p].name;
-            recipeIngredients = filteredlist[p].ingredients;
-            for (let g = 0; g < recipeIngredients.length; g++) {
-                recipeIngredient = recipeIngredients[g].ingredient
-                recipeUstensils = filteredlist[p].ustensils;
-                for (let u = 0; u < recipeUstensils.length; u++) {
-                    recipeUstensil = recipeUstensils[u]
-                    recipeAppliance = filteredlist[p].appliance;
-                    recipeDescription = filteredlist[p].description;
-                    for (let i = 0; i < array.length; i++) {
-                        for (let j = 0; j < array[i].length; j++) {
-                            let ingredient = array[0][j];
-                            let ustensil = array[1][j];
-                            let appliance = array[2][j]
-                            isMatch = ((recipeName.indexOf(ingredient) != -1) && (recipeName.indexOf(ustensil) != -1) && (recipeName.indexOf(appliance) != -1)) || ((recipeDescription.indexOf(ingredient) != -1) && (recipeDescription.indexOf(ustensil) != -1)) && (recipeDescription.indexOf(appliance) != -1) || ((recipeAppliance.indexOf(ingredient) != -1) && (recipeAppliance.indexOf(ustensil) != -1) && (recipeAppliance.indexOf(appliance) != -1)) || ((recipeUstensil.indexOf(ingredient) != -1) && (recipeUstensil.indexOf(ustensil) != -1) && (recipeUstensil.indexOf(appliance) != -1)) || ((recipeIngredient.indexOf(ingredient) != -1) && (recipeIngredient.indexOf(ustensil) != -1) && (recipeIngredient.indexOf(appliance) != -1));
-                            if (isMatch) {
-                                newList.push(filteredlist[p]);
+    filterList(array){
+        console.log(array)
+        let result = [];
+        let recipes = this.filteredList;
+        let ingredients = array[0];
+        let ustensils = array[1];
+        let appliances = array[2];
+        for (let recipe of recipes) {
+            let recipeMatch
+            if(ingredients.length !== 0){
+                for (let ingr of ingredients) {
+                    for (let i = 0; i < recipe.ingredients.length; i++) {
+                        recipeMatch = true;
+                        let recipeIngr = recipe.ingredients[i];
+                        recipeMatch = recipeMatch && (recipeIngr["ingredient"].indexOf(ingr) !== -1)
                         }
-                        }
-                    }
+                }
+            }
+            if (ustensils.length !==0){
+                for (let ust of ustensils) {
+                    recipeMatch = true
+                    recipeMatch = recipeMatch && (recipe["ustensils"].indexOf(ust) !== -1)
+                }
+            }
+            if (appliances.length !== 0) {
+                for (let appl of appliances) {
+                    recipeMatch = true
+                    recipeMatch = recipeMatch && (recipe["appliance"].indexOf(appl) !== -1)
+                }
+            }
+        if (recipeMatch == true){
+            result.push(recipe)
+            console.log(result)
                 }
             }
         }
-        let finalList = Array.from(new Set(newList))
-        console.log(finalList)
-        for (let i=0; i < finalList.length; i++){
-            document.querySelector("#card__reciper--list").innerHTML += finalList[i].getCardHTML();
-        }
-    }
-
 
 }
