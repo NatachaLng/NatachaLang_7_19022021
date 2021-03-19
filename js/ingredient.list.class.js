@@ -10,17 +10,21 @@ class IngredientList {
      * Init to load Datas and others event
      */
     init() {
-        this.allIngredientList();
-        this.cleanIngredientList();
-        this.sortByAlphabeticOrder();
-        this.createIngredientList(this.cleanIngredientList());
+        let array = [];
+        array = this.db.getDatas().recipes
+        console.log(array);
+        this.createIngredientList(this.cleanIngredientList(array));
         this.ingredientSearchBar();
     }
 
-    allIngredientList() {
-        {
+    filtered(array){
+        this.createIngredientList(this.cleanIngredientList(array));
+        this.ingredientSearchBar();
+    }
+
+    allIngredientList(array) {
             let allIngredients = new Array();
-            for (let p of this.db.getDatas().recipes) {
+            for (let p of array) {
                 let ingredients = p.ingredients
                 for (let n of ingredients) {
                     let ingredient = new Ingredient(
@@ -29,11 +33,11 @@ class IngredientList {
                 }
             }
             return allIngredients;
-        }
+
     }
 
-    cleanIngredientList() {
-        let allIngredientsList = this.allIngredientList();
+    cleanIngredientList(array) {
+        let allIngredientsList = this.allIngredientList(array);
         const uniqueIngredient = Array.from(new Set(allIngredientsList.map(a => a.ingredient)))
             .map(ingredient => {
                 return allIngredientsList.find(a => a.ingredient === ingredient)
@@ -42,7 +46,7 @@ class IngredientList {
     }
 
     sortByAlphabeticOrder() {
-        let allIngredientsList = this.cleanIngredientList()
+        let allIngredientsList = this.cleanIngredientList(array)
         allIngredientsList.sort(function (a, b) {
             return a.ingredient.localeCompare(b.ingredient);
         });
@@ -53,6 +57,7 @@ class IngredientList {
      * Create the list from the clean list
      */
     createIngredientList(array) {
+        document.querySelector(this.selector_id_list).innerHTML = "";
         let ingredientList = array;
         for (let i = 0; i < ingredientList.length; i++) {
             document.querySelector(this.selector_id_list).innerHTML += ingredientList[i].getIngredientHTML();

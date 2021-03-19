@@ -10,17 +10,20 @@ class UstensilList {
      * Init to load Datas and others event
      */
     init() {
-        this.allUstensilsList();
-        this.cleanUstensilsList();
-        this.sortByAlphabeticOrder();
-        this.createUstensilList(this.cleanUstensilsList());
+        let array = [];
+        array = this.db.getDatas().recipes
+        this.createUstensilList(this.cleanUstensilsList(array));
         this.ustensilSearchBar();
     }
 
-    allUstensilsList() {
-        {
+    filtered(array){
+        this.createUstensilList(this.cleanUstensilsList(array));
+        this.ustensilSearchBar();
+    }
+
+    allUstensilsList(array) {
             let allUstensils = new Array();
-            for (let p of this.db.getDatas().recipes) {
+            for (let p of array) {
                 let ustensils = p.ustensils
                 for (let i = 0; i < ustensils.length ; i++){
                         let ustensil = new Ustensil(
@@ -29,11 +32,10 @@ class UstensilList {
                 }
             }
             return allUstensils;
-        }
     }
 
-    cleanUstensilsList(){
-            let allUstensilsList = this.allUstensilsList();
+    cleanUstensilsList(array){
+            let allUstensilsList = this.allUstensilsList(array);
             const uniqueUstensil = Array.from(new Set(allUstensilsList.map(a => a.ustensil)))
                 .map(ustensil => {
                     return allUstensilsList.find(a => a.ustensil === ustensil)
@@ -52,6 +54,7 @@ class UstensilList {
      * Create the list from the clean list
      */
     createUstensilList(array) {
+        document.querySelector(this.selector_id_list).innerHTML = "";
         for (let i = 0; i < array.length; i++) {
             document.querySelector(this.selector_id_list).innerHTML += array[i].getUstensilHTML();
         }
@@ -59,7 +62,6 @@ class UstensilList {
     }
 
     ustensilSearchBar() {
-        console.log(this.cleanUstensilsList())
         let searchBar = document.querySelector("#input__ustensils");
         searchBar.addEventListener('click', openDropdownUstensils);
         searchBar.addEventListener("keyup", e => {

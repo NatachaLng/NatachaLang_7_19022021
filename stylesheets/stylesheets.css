@@ -75,6 +75,13 @@ ul, li {
 .hiden {
   display: none; }
 
+#ingredient__tag,
+#ustensil__tag,
+#appliance__tag {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap; }
+
 .ingredient {
   background-color: #3282F7; }
 

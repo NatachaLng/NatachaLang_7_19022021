@@ -10,6 +10,7 @@ class RecipesList {
         this.ingredientTagList = new Array()
         this.ustensilTagList = new Array();
         this.applianceTagList = new Array();
+        this.searchBarTagList = new Array();
     }
 
     /**
@@ -79,6 +80,9 @@ class RecipesList {
                     case 'appliance':
                         this.applianceTagList.push(text.toLowerCase());
                         applianceTag.innerHTML += `<div class="appliance tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'appliance', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
+                        break
+                    case 'searchbar':
+                        this.searchBarTagList.push(text.toLowerCase());
                 }
                 break
             case 'defilter':
@@ -101,6 +105,7 @@ class RecipesList {
         searchArray.push(this.ingredientTagList);
         searchArray.push(this.ustensilTagList);
         searchArray.push(this.applianceTagList);
+        searchArray.push(this.searchBarTagList)
         this.filterList(searchArray);
     }
 
@@ -110,13 +115,17 @@ class RecipesList {
         let ingredients = array[0];
         let ustensils = array[1];
         let appliances = array[2];
+        let searchBar = array[3];
         for (let recipe of recipes) {
             let recipeMatchIngr = true
             let recipeMatchUst = true
             let recipeMatchAppl = true
+            let recipeMatchSearchBar = true;
             let recipeIngredient = [];
             let recipeUstensil = [];
             let recipeAppliance = [];
+            let recipeName = [];
+            let recipeDesc = [];
             if (ingredients.length !== 0) {
                 for (let i = 0; i < recipe.ingredients.length; i++){
                     recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
@@ -144,11 +153,35 @@ class RecipesList {
                     recipeMatchAppl = recipeMatchAppl && (recipeAppliance.indexOf(appl) !== -1)
                 }
             }
-            if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true){
+            if (searchBar.length !== 0){
+                for (let i = 0; i < recipe.ingredients.length; i++){
+                    recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
+                }
+                for (let i = 0; i < recipe.ustensils.length; i++){
+                    recipeUstensil.push(recipe.ustensils[i].toLowerCase())
+                }
+                for (let i = 0; i < recipe.appliance.length; i++){
+                    recipeAppliance.push(recipe.appliance.toLowerCase())
+                }
+                for (let i = 0; i < recipe.name.length; i++){
+                    recipeName.push(recipe.name[i].toLowerCase())
+                }
+                for (let i = 0; i < recipe.description.length; i++){
+                    recipeDesc.push(recipe.description[i].toLowerCase())
+                }
+                for (let searchbar of searchBar) {
+                    recipeMatchSearchBar = recipeMatchSearchBar && ((recipeAppliance.indexOf(searchbar) !== -1) || (recipeUstensil.indexOf(searchbar) !== -1) || (recipeIngredient.indexOf(searchbar) !== -1) || (recipeName.indexOf(searchbar) !== -1) || (recipeDesc.indexOf(searchbar) !== -1));
+                }
+            }
+            if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true && recipeMatchSearchBar === true){
                 result.push(recipe);
                 }
              }
+        console.log(result)
         this.createCards(result);
+        ingredientList.filtered(result);
+        applianceList.filtered(result);
+        ustensilList.filtered(result);
     }
 
 }

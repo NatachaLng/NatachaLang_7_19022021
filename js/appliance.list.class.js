@@ -10,27 +10,29 @@ class ApplianceList {
      * Init to load Datas and others event
      */
     init() {
-        this.allAppliancesList();
-        this.cleanAppliancesList();
-        this.sortByAlphabeticOrder();
-        this.createApplianceList(this.cleanAppliancesList());
+        let array = [];
+        array = this.db.getDatas().recipes;
+        this.createApplianceList(this.cleanAppliancesList(array));
         this.applianceSearchBar();
     }
 
-    allAppliancesList() {
-        {
+    filtered(array){
+        this.createApplianceList(this.cleanAppliancesList(array));
+        this.applianceSearchBar();
+    }
+
+    allAppliancesList(array) {
             let allAppliances = new Array();
-            for (let p of this.db.getDatas().recipes) {
+            for (let p of array) {
                 let appliances = p.appliance
                 let appliance = new Appliance(appliances)
                 allAppliances.push(appliance);
             }
             return allAppliances;
-        }
     }
 
-    cleanAppliancesList(){
-            let allAppliancesList = this.allAppliancesList();
+    cleanAppliancesList(array){
+            let allAppliancesList = this.allAppliancesList(array);
             const uniqueAppliance = Array.from(new Set(allAppliancesList.map(a => a.appliance)))
                 .map(appliance => {
                     return allAppliancesList.find(a => a.appliance === appliance)
@@ -49,6 +51,7 @@ class ApplianceList {
      * Create the list from the clean list
      */
     createApplianceList(array) {
+        document.querySelector(this.selector_id_list).innerHTML = "";
         for (let i = 0; i < array.length; i++) {
             document.querySelector(this.selector_id_list).innerHTML += array[i].getApplianceHTML();
         }
