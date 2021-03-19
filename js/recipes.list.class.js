@@ -110,33 +110,33 @@ class RecipesList {
         let ustensils = array[1];
         let appliances = array[2];
         for (let recipe of recipes) {
-            let recipeMatch
-            if(ingredients.length !== 0){
+            let recipeMatchIngr = true
+            let recipeMatchUst = true
+            let recipeMatchAppl = true
+            if (ingredients.length !== 0) {
                 for (let ingr of ingredients) {
-                    for (let i = 0; i < recipe.ingredients.length; i++) {
-                        recipeMatch = true;
-                        let recipeIngr = recipe.ingredients[i];
-                        recipeMatch = recipeMatch && (recipeIngr["ingredient"].indexOf(ingr) !== -1)
-                        }
+                    for (let i = 0; i < recipe.ingredients.length ; i++) {
+                        recipeMatchIngr = recipeMatchIngr && (recipe.ingredients[i].ingredient.indexOf(ingr) !== -1)
+                        console.log(recipe.ingredients[i].ingredient, recipeMatchIngr)
+                    }
                 }
             }
-            if (ustensils.length !==0){
+            if (ustensils.length !== 0) {
                 for (let ust of ustensils) {
-                    recipeMatch = true
-                    recipeMatch = recipeMatch && (recipe["ustensils"].indexOf(ust) !== -1)
+                    recipeMatchUst = recipeMatchUst && (recipe["ustensils"].indexOf(ust) !== -1)
                 }
             }
             if (appliances.length !== 0) {
                 for (let appl of appliances) {
-                    recipeMatch = true
-                    recipeMatch = recipeMatch && (recipe["appliance"].indexOf(appl) !== -1)
+                    recipeMatchAppl = recipeMatchAppl && (recipe["appliance"].indexOf(appl) !== -1)
                 }
             }
-        if (recipeMatch == true){
-            result.push(recipe)
-            console.log(result)
-                }
+            if (recipeMatchIngr == true && recipeMatchUst == true && recipeMatchAppl == true){
+                result.push(recipe);
             }
         }
+            console.log(result)
+
+            }
 
 }
