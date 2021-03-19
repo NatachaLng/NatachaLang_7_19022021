@@ -33,7 +33,7 @@ class UstensilTag extends Tag {
 
     isEligible(recipe) {
         for (let i = 0; i < recipe.ustensils.length; i++){
-            if (recipe.ustensils[i].indexOf(this.name)) {
+            if (recipe.ustensils[i].indexOf(this.name) !== -1) {
                 return true;
             }
             return false
@@ -50,7 +50,7 @@ class ApplianceTag extends Tag {
     }
 
     isEligible(recipe) {
-            if (recipe.appliance.indexOf(this.name)) {
+            if (recipe.appliance.indexOf(this.name) !==-1) {
                 return true;
             }
             return false
@@ -70,15 +70,12 @@ class Filter {
         switch (type){
             case "ingredient":
                 this.taglist.push(new IngredientTag(text));
-                console.log(this.taglist)
                 break;
             case "ustensil":
                 this.taglist.push(new UstensilTag(text));
-                console.log(this.taglist)
                 break;
             case "appliance":
                 this.taglist.push(new ApplianceTag(text))
-                console.log(this.taglist)
                 break;
             default: throw "error";
         }
@@ -91,6 +88,7 @@ class Filter {
             for (let tag of this.taglist) {
                 if (!tag.isEligible(recipe)) {
                     eligible = false;
+                    console.log(eligible);
                 }
                 if (eligible == true) {
                     this.finalRecipeList.push(recipe)
