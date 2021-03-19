@@ -58,31 +58,6 @@ class UstensilList {
 
     }
 
-    filterByUstensil(text) {
-        document.querySelector("#card__reciper--list").innerHTML = "";
-        document.querySelector("#ustensil__tag").innerHTML = `<div class="ustensil tag">${text}<button name="close tag" class="tag__btn" onclick="ustensilList.filterByUstensil('all')"><i class="far fa-times-circle"></i></button> </div>`
-        if (text !== 'all') {
-            for (let i = 0; i < this.recipes.length; i++) {
-                let ustensils = this.recipes[i].ustensils;
-                for (let j = 0; j < ustensils.length; j++) {
-                    let tags = ustensils[j];
-                    let isMatch = (tags.indexOf(text) != -1)
-                    if (isMatch) {
-                        document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
-                    }
-                }
-            }
-        } else {
-            document.querySelector("#ustensil__tag").innerHTML = "";
-            for (let i = 0; i < this.recipes.length; i++) {
-                document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
-            }
-        }
-        let searchBar = document.querySelector("#input__ustensils");
-        searchBar.value = "";
-        return this.recipes
-    }
-
     ustensilSearchBar() {
         console.log(this.cleanUstensilsList())
         let searchBar = document.querySelector("#input__ustensils");
@@ -100,8 +75,8 @@ class UstensilList {
         searchBar.addEventListener('keydown', function(e){
             if (13 == e.keyCode){
                 let searchString = e.target.value.toLowerCase();
-                console.log(searchString)
-                ustensilList.filterByUstensil(searchString);
+                console.log(searchString);
+                recipeList.getFilterTag('filter', 'ustensil', searchString);
                 searchBar.value = "";
             }
         })

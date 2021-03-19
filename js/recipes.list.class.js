@@ -54,6 +54,7 @@ class RecipesList {
      */
 
     createCards(array) {
+        document.querySelector(this.selector_id_list).innerHTML = "";
         for (let i = 0; i < array.length; i++) {
             document.querySelector(this.selector_id_list).innerHTML += array[i].getCardHTML();
         }
@@ -68,16 +69,16 @@ class RecipesList {
             case "filter":
                 switch (type) {
                     case "ingredient":
-                        this.ingredientTagList.push(text);
-                        ingredientTag.innerHTML = `<div class="ingredient tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ingredient', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
+                        this.ingredientTagList.push(text.toLowerCase());
+                        ingredientTag.innerHTML += `<div class="ingredient tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ingredient', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
                         break
                     case 'ustensil':
-                        this.ustensilTagList.push(text);
-                        ustensilTag.innerHTML = `<div class="ustensil tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ustensil', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
+                        this.ustensilTagList.push(text.toLowerCase());
+                        ustensilTag.innerHTML += `<div class="ustensil tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ustensil', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
                         break
                     case 'appliance':
-                        this.applianceTagList.push(text);
-                        applianceTag.innerHTML = `<div class="appliance tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'appliance', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
+                        this.applianceTagList.push(text.toLowerCase());
+                        applianceTag.innerHTML += `<div class="appliance tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'appliance', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
                 }
                 break
             case 'defilter':
@@ -94,7 +95,8 @@ class RecipesList {
                         let applianceIndex = this.applianceTagList.indexOf(text);
                         this.applianceTagList.splice(applianceIndex, 1);
                 }
-                document.getElementById(text).display = "none"
+                document.getElementById(text).classList.add("hiden");
+                document.getElementById(text).removeAttribute("id");
         }
         searchArray.push(this.ingredientTagList);
         searchArray.push(this.ustensilTagList);
@@ -103,7 +105,6 @@ class RecipesList {
     }
 
     filterList(array){
-        console.log(array)
         let result = [];
         let recipes = this.filteredList;
         let ingredients = array[0];
@@ -114,9 +115,11 @@ class RecipesList {
             let recipeMatchUst = true
             let recipeMatchAppl = true
             let recipeIngredient = [];
+            let recipeUstensil = [];
+            let recipeAppliance = [];
             if (ingredients.length !== 0) {
                 for (let i = 0; i < recipe.ingredients.length; i++){
-                    recipeIngredient.push(recipe.ingredients[i].ingredient)
+                    recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
                 }
                 for (let ingr of ingredients) {
                         console.log(recipeIngredient);
@@ -126,21 +129,26 @@ class RecipesList {
                     }
             }
             if (ustensils.length !== 0) {
+                for (let i = 0; i < recipe.ustensils.length; i++){
+                    recipeUstensil.push(recipe.ustensils[i].toLowerCase())
+                }
                 for (let ust of ustensils) {
-                    recipeMatchUst = recipeMatchUst && (recipe["ustensils"].indexOf(ust) !== -1)
+                    recipeMatchUst = recipeMatchUst && (recipeUstensil.indexOf(ust) !== -1)
                 }
             }
             if (appliances.length !== 0) {
+                for (let i = 0; i < recipe.appliance.length; i++){
+                    recipeAppliance.push(recipe.appliance.toLowerCase())
+                }
                 for (let appl of appliances) {
-                    recipeMatchAppl = recipeMatchAppl && (recipe["appliance"].indexOf(appl) !== -1)
+                    recipeMatchAppl = recipeMatchAppl && (recipeAppliance.indexOf(appl) !== -1)
                 }
             }
             if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true){
                 result.push(recipe);
-            }
-        }
-            console.log(result)
-
-            }
+                }
+             }
+        this.createCards(result);
+    }
 
 }

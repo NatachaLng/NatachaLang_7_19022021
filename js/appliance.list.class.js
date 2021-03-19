@@ -55,28 +55,6 @@ class ApplianceList {
 
     }
 
-    filterByAppliance(text) {
-        document.querySelector("#card__reciper--list").innerHTML = "";
-        document.querySelector("#appliance__tag").innerHTML = `<div class="appliance tag">${text}<button name="close tag" class="tag__btn" onclick="applianceList.filterByAppliance('all')"><i class="far fa-times-circle"></i></button> </div>`
-        if (text !== 'all') {
-            for (let i = 0; i < this.recipes.length; i++) {
-                let tags = this.recipes[i].appliance;
-                    let isMatch = (tags.indexOf(text) != -1)
-                    if (isMatch) {
-                        document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
-                    }
-                }
-        } else {
-            document.querySelector("#appliance__tag").innerHTML = "";
-            for (let i = 0; i < this.recipes.length; i++) {
-                document.querySelector("#card__reciper--list").innerHTML += this.recipes[i].getCardHTML();
-            }
-        }
-        let searchBar = document.querySelector("#input__appliance");
-        searchBar.value = "";
-        return this.recipes
-    }
-
     applianceSearchBar() {
         let searchBar = document.querySelector("#input__appliance");
         searchBar.addEventListener('click', openDropdownAppliances);
@@ -94,7 +72,7 @@ class ApplianceList {
             if (13 == e.keyCode){
                 let searchString = e.target.value.toLowerCase();
                 console.log(searchString)
-                applianceList.filterByAppliance(searchString);
+                recipeList.getFilterTag('filter', 'appliance', searchString);
                 searchBar.value = "";
             }
         })
