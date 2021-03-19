@@ -113,13 +113,17 @@ class RecipesList {
             let recipeMatchIngr = true
             let recipeMatchUst = true
             let recipeMatchAppl = true
+            let recipeIngredient = [];
             if (ingredients.length !== 0) {
-                for (let ingr of ingredients) {
-                    for (let i = 0; i < recipe.ingredients.length ; i++) {
-                        recipeMatchIngr = recipeMatchIngr && (recipe.ingredients[i].ingredient.indexOf(ingr) !== -1)
-                        console.log(recipe.ingredients[i].ingredient, recipeMatchIngr)
-                    }
+                for (let i = 0; i < recipe.ingredients.length; i++){
+                    recipeIngredient.push(recipe.ingredients[i].ingredient)
                 }
+                for (let ingr of ingredients) {
+                        console.log(recipeIngredient);
+                        console.log(ingr)
+                        recipeMatchIngr = recipeMatchIngr && (recipeIngredient.indexOf(ingr) !== -1)
+                        console.log(recipe.ingredients, recipeMatchIngr)
+                    }
             }
             if (ustensils.length !== 0) {
                 for (let ust of ustensils) {
@@ -131,7 +135,7 @@ class RecipesList {
                     recipeMatchAppl = recipeMatchAppl && (recipe["appliance"].indexOf(appl) !== -1)
                 }
             }
-            if (recipeMatchIngr == true && recipeMatchUst == true && recipeMatchAppl == true){
+            if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true){
                 result.push(recipe);
             }
         }
