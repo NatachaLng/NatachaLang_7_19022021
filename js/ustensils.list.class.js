@@ -4,6 +4,7 @@ class UstensilList {
         this.selector_id_list = selector_id_list
         this.db = db
         this.recipes = recipeList.getRecipes()
+        this.list = new Array();
     }
 
     /**
@@ -40,6 +41,7 @@ class UstensilList {
                 .map(ustensil => {
                     return allUstensilsList.find(a => a.ustensil === ustensil)
                 })
+            this.list = uniqueUstensil;
             return uniqueUstensil;
         }
 
@@ -66,7 +68,7 @@ class UstensilList {
         searchBar.addEventListener('click', openDropdownUstensils);
         searchBar.addEventListener("keyup", e => {
             let searchStringBar = e.target.value.toLowerCase();
-            const filteredUstensils = this.cleanUstensilsList().filter(ustensil => {
+            const filteredUstensils = this.list.filter(ustensil => {
                 return (
                     ustensil.ustensil.toLowerCase().includes(searchStringBar)
                 );
@@ -77,7 +79,6 @@ class UstensilList {
         searchBar.addEventListener('keydown', function(e){
             if (13 == e.keyCode){
                 let searchString = e.target.value.toLowerCase();
-                console.log(searchString);
                 recipeList.getFilterTag('filter', 'ustensil', searchString);
                 searchBar.value = "";
             }

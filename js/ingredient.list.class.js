@@ -4,6 +4,7 @@ class IngredientList {
         this.selector_id_list = selector_id_list;
         this.db = db;
         this.recipes = recipeList.getRecipes()
+        this.list  = new Array();
     }
 
     /**
@@ -42,6 +43,7 @@ class IngredientList {
             .map(ingredient => {
                 return allIngredientsList.find(a => a.ingredient === ingredient)
             })
+        this.list = uniqueIngredient;
         return uniqueIngredient;
     }
 
@@ -62,7 +64,6 @@ class IngredientList {
         for (let i = 0; i < ingredientList.length; i++) {
             document.querySelector(this.selector_id_list).innerHTML += ingredientList[i].getIngredientHTML();
         }
-
     }
 
 
@@ -71,11 +72,12 @@ class IngredientList {
         searchBar.addEventListener('click', openDropdownIngredients);
         searchBar.addEventListener("keyup", e => {
             let searchStringBar = e.target.value.toLowerCase();
-            const filteredIngredients = this.cleanIngredientList().filter(ingredient => {
+            const filteredIngredients = this.list.filter(ingredient => {
                 return (
                     ingredient.ingredient.toLowerCase().includes(searchStringBar)
                 );
             });
+            console.log(filteredIngredients)
             document.querySelector(this.selector_id_list).innerHTML = "";
             this.createIngredientList(filteredIngredients);
         });

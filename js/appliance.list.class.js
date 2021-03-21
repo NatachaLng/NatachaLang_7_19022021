@@ -4,6 +4,7 @@ class ApplianceList {
         this.db = db
         this.selector_id_list = selector_id_list
         this.recipes = recipeList.getRecipes();
+        this.list = new Array();
     }
 
     /**
@@ -37,6 +38,7 @@ class ApplianceList {
                 .map(appliance => {
                     return allAppliancesList.find(a => a.appliance === appliance)
                 })
+        this.list = uniqueAppliance
             return uniqueAppliance;
         }
 
@@ -63,7 +65,7 @@ class ApplianceList {
         searchBar.addEventListener('click', openDropdownAppliances);
         searchBar.addEventListener("keyup", e => {
             let searchStringBar = e.target.value.toLowerCase();
-            const filteredAppliances = this.cleanAppliancesList().filter(appliance => {
+            const filteredAppliances = this.list.filter(appliance => {
                 return (
                     appliance.appliance.toLowerCase().includes(searchStringBar)
                 );
