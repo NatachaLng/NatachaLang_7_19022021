@@ -16,6 +16,7 @@ class IngredientTag extends Tag {
         for (let i = 0; i < recipe.ingredients.length ; i++){
             let ingredients = recipe.ingredients[i];
             if (ingredients.ingredient.indexOf(this.name) !== -1) {
+                console.log(ingredients.ingredient)
                 return true;
                 }
             return false
@@ -83,14 +84,13 @@ class Filter {
     }
 
     filterRecipes(){
-        for (let recipe of this.recipesFiltered) {
-            let eligible = true;
-            for (let tag of this.taglist) {
-                if (!tag.isEligible(recipe)) {
-                    eligible = false;
-                    console.log(eligible);
-                }
-                if (eligible == true) {
+        for (let tag of this.taglist) {
+            for (let recipe of this.recipesFiltered) {
+                let eligible = false;
+                console.log(eligible, tag)
+                eligible = tag.isEligible(recipe) || eligible;
+                console.log(eligible);
+                if (eligible) {
                     this.finalRecipeList.push(recipe)
                     console.log(this.finalRecipeList)
                 }
