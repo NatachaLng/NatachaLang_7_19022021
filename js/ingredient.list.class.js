@@ -77,7 +77,6 @@ class IngredientList {
                     ingredient.ingredient.toLowerCase().includes(searchStringBar)
                 );
             });
-            console.log(filteredIngredients)
             document.querySelector(this.selector_id_list).innerHTML = "";
             this.createIngredientList(filteredIngredients);
         });

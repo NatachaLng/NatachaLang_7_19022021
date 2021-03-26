@@ -70,6 +70,7 @@ class RecipesList {
             case "filter":
                 switch (type) {
                     case "ingredient":
+                        console.log(text);
                         this.ingredientTagList.push(text.toLowerCase());
                         ingredientTag.innerHTML += `<div class="ingredient tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'ingredient', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
                         break
@@ -124,17 +125,13 @@ class RecipesList {
             let recipeIngredient = [];
             let recipeUstensil = [];
             let recipeAppliance = [];
-            let recipeName = [];
-            let recipeDesc = [];
             if (ingredients.length !== 0) {
                 for (let i = 0; i < recipe.ingredients.length; i++){
                     recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
                 }
                 for (let ingr of ingredients) {
-                        console.log(recipeIngredient);
-                        console.log(ingr)
-                        recipeMatchIngr = recipeMatchIngr && (recipeIngredient.indexOf(ingr) !== -1)
-                        console.log(recipe.ingredients, recipeMatchIngr)
+                        recipeMatchIngr = recipeMatchIngr && (recipeIngredient.includes(ingr))
+                        console.log(recipeIngredient, recipeMatchIngr, ingr)
                     }
             }
             if (ustensils.length !== 0) {
@@ -142,7 +139,7 @@ class RecipesList {
                     recipeUstensil.push(recipe.ustensils[i].toLowerCase())
                 }
                 for (let ust of ustensils) {
-                    recipeMatchUst = recipeMatchUst && (recipeUstensil.indexOf(ust) !== -1)
+                    recipeMatchUst = recipeMatchUst && (recipeUstensil.includes(ust))
                 }
             }
             if (appliances.length !== 0) {
@@ -150,27 +147,13 @@ class RecipesList {
                     recipeAppliance.push(recipe.appliance.toLowerCase())
                 }
                 for (let appl of appliances) {
-                    recipeMatchAppl = recipeMatchAppl && (recipeAppliance.indexOf(appl) !== -1)
+                    recipeMatchAppl = recipeMatchAppl && (recipeAppliance.includes(appl))
                 }
             }
             if (searchBar.length !== 0){
-                for (let i = 0; i < recipe.ingredients.length; i++){
-                    recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
-                }
-                for (let i = 0; i < recipe.ustensils.length; i++){
-                    recipeUstensil.push(recipe.ustensils[i].toLowerCase())
-                }
-                for (let i = 0; i < recipe.appliance.length; i++){
-                    recipeAppliance.push(recipe.appliance.toLowerCase())
-                }
-                for (let i = 0; i < recipe.name.length; i++){
-                    recipeName.push(recipe.name[i].toLowerCase())
-                }
-                for (let i = 0; i < recipe.description.length; i++){
-                    recipeDesc.push(recipe.description[i].toLowerCase())
-                }
+
                 for (let searchbar of searchBar) {
-                    recipeMatchSearchBar = recipeMatchSearchBar && ((recipeAppliance.indexOf(searchbar) !== -1) || (recipeUstensil.indexOf(searchbar) !== -1) || (recipeIngredient.indexOf(searchbar) !== -1) || (recipeName.indexOf(searchbar) !== -1) || (recipeDesc.indexOf(searchbar) !== -1));
+                    recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.includes(searchbar) || recipe.description.includes(searchbar));
                 }
             }
             if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true && recipeMatchSearchBar === true){
