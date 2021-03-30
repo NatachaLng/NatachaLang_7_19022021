@@ -83,6 +83,7 @@ class RecipesList {
                         applianceTag.innerHTML += `<div class="appliance tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'appliance', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
                         break
                     case 'searchbar':
+                        this.searchBarTagList = [];
                         this.searchBarTagList.push(text.toLowerCase());
                 }
                 break
@@ -106,7 +107,8 @@ class RecipesList {
         searchArray.push(this.ingredientTagList);
         searchArray.push(this.ustensilTagList);
         searchArray.push(this.applianceTagList);
-        searchArray.push(this.searchBarTagList)
+        searchArray.push(this.searchBarTagList);
+        console.log(searchArray)
         this.filterList(searchArray);
     }
 
