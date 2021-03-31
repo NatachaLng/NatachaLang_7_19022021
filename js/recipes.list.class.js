@@ -14,7 +14,7 @@ class RecipesList {
 
     init() {
         this.getRecipes();
-        this.createCards();
+        this.createCards(this.getRecipes());
     }
 
     /**
@@ -46,8 +46,8 @@ class RecipesList {
      * Create Cards from getPhotographers()
      */
 
-    createCards() {
-        let recipes = this.getRecipes();
+    createCards(recipes) {
+        document.querySelector(this.selector_id_list).innerHTML = "";
         for (let i = 0; i < recipes.length; i++) {
             document.querySelector(this.selector_id_list).innerHTML += recipes[i].getCardHTML();
         }
