@@ -81,10 +81,12 @@ class IngredientList {
             this.createIngredientList(filteredIngredients);
         });
         searchBar.addEventListener('keydown', function(e){
-            if (13 == e.keyCode){
-                let searchString = e.target.value.toLowerCase();
-                recipeList.getFilterTag('filter', 'ingredient', searchString);
-                searchBar.value = "";
+            if (13 == e.keyCode) {
+                if (searchBar.value !== '') {
+                    let searchString = e.target.value.toLowerCase();
+                    recipeList.getFilterTag('filter', 'ingredient', searchString);
+                    searchBar.value = "";
+                }
             }
         })
     }

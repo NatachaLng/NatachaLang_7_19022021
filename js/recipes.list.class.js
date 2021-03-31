@@ -21,7 +21,6 @@ class RecipesList {
         this.getRecipes();
         this.createCards(this.getRecipes());
         this.filteredList =  this.getRecipes()
-        console.log(this.filteredList);
 
     }
 
@@ -108,7 +107,6 @@ class RecipesList {
         searchArray.push(this.ustensilTagList);
         searchArray.push(this.applianceTagList);
         searchArray.push(this.searchBarTagList);
-        console.log(searchArray)
         this.filterList(searchArray);
     }
 
@@ -123,16 +121,26 @@ class RecipesList {
             let recipeMatchIngr = true
             let recipeMatchUst = true
             let recipeMatchAppl = true
+            let recipeSearchBarIngr = true;
             let recipeMatchSearchBar = true;
             let recipeIngredient = [];
             let recipeUstensil = [];
             let recipeAppliance = [];
+            let recipeSearchBarIngredient = [];
             if (ingredients.length !== 0) {
                 for (let i = 0; i < recipe.ingredients.length; i++){
                     recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
                 }
                 for (let ingr of ingredients) {
-                        recipeMatchIngr = recipeMatchIngr && (recipeIngredient.includes(ingr))
+                        let recipeIngr = (recipeIngredient.filter(ingredient => {
+                            if (ingredient.toLowerCase().includes(ingr)){
+                                return true
+                            }
+                        }))
+                        if (recipeIngr.length !== 0){
+                            recipeIngr = true
+                        }
+                        recipeMatchIngr = recipeMatchIngr && recipeIngr;
                         console.log(recipeIngredient, recipeMatchIngr, ingr)
                     }
             }
@@ -141,32 +149,55 @@ class RecipesList {
                     recipeUstensil.push(recipe.ustensils[i].toLowerCase())
                 }
                 for (let ust of ustensils) {
-                    recipeMatchUst = recipeMatchUst && (recipeUstensil.includes(ust))
+                    let recipeUst = (recipeUstensil.filter(ustensil => {
+                        if (ustensil.toLowerCase().includes(ust)){
+                            return true
+                        }
+                    }))
+                    if (recipeUst.length !== 0){
+                        recipeUst = true
+                    }
+                    recipeMatchUst = recipeMatchUst && recipeUst
                 }
             }
             if (appliances.length !== 0) {
                 for (let i = 0; i < recipe.appliance.length; i++){
                     recipeAppliance.push(recipe.appliance.toLowerCase())
                 }
-                for (let appl of appliances) {
-                    recipeMatchAppl = recipeMatchAppl && (recipeAppliance.includes(appl))
+                for (let appl of appliances) {let recipeApp= (recipeAppliance.filter(appliance => {
+                    if (appliance.toLowerCase().includes(appl)){
+                        return true
+                    }
+                }))
+                    if (recipeApp.length !== 0){
+                        recipeApp = true
+                    }
+                    recipeMatchAppl = recipeMatchAppl && recipeApp
                 }
             }
             if (searchBar.length !== 0){
+                    for (let i = 0; i < recipe.ingredients.length; i++){
+                        recipeSearchBarIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
 
-                for (let searchbar of searchBar) {
-                    recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.includes(searchbar) || recipe.description.includes(searchbar));
+                    }
+                    for (let ingr of searchBar) {
+                        let recipeIngr = (recipeSearchBarIngredient.filter(ingredient => {
+                            if (ingredient.toLowerCase().includes(ingr)){
+                                return true
+                            }
+                        }))
+                        if (recipeIngr.length !== 0){
+                            recipeIngr = true
+                        }
+                        recipeSearchBarIngr = recipeSearchBarIngr && recipeIngr;
+                    }
+                    recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.includes(searchBar) || recipe.description.includes(searchBar)) || recipeSearchBarIngr;
                 }
-            }
             if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true && recipeMatchSearchBar === true){
                 result.push(recipe);
                 }
              }
-        console.log(result)
         this.createCards(result);
-        ingredientList.filtered(result);
-        applianceList.filtered(result);
-        ustensilList.filtered(result);
     }
 
 }

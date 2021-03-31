@@ -74,11 +74,13 @@ class ApplianceList {
             this.createApplianceList(filteredAppliances);
         });
         searchBar.addEventListener('keydown', function(e){
-            if (13 == e.keyCode){
-                let searchString = e.target.value.toLowerCase();
-                console.log(searchString)
-                recipeList.getFilterTag('filter', 'appliance', searchString);
-                searchBar.value = "";
+            if (13 == e.keyCode) {
+                if (searchBar.value !== '') {
+                    let searchString = e.target.value.toLowerCase();
+                    console.log(searchString)
+                    recipeList.getFilterTag('filter', 'appliance', searchString);
+                    searchBar.value = "";
+                }
             }
         })
     }
