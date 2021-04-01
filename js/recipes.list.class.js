@@ -10,7 +10,6 @@ class RecipesList {
         this.ingredientTagList = new Array()
         this.ustensilTagList = new Array();
         this.applianceTagList = new Array();
-        this.searchBarTagList = new Array();
     }
 
     /**
@@ -81,11 +80,6 @@ class RecipesList {
                         this.applianceTagList.push(text.toLowerCase());
                         applianceTag.innerHTML += `<div class="appliance tag" id="${text}">${text}<button name="close tag" class="tag__btn" onclick="recipeList.getFilterTag('defilter', 'appliance', '${text}')"><i class="far fa-times-circle"></i></button> </div>`
                         break
-                    case 'searchbar':
-                        this.searchBarTagList = [];
-                        console.log(this.searchBarTagList)
-                        this.searchBarTagList.push(text.toLowerCase());
-                        console.log(this.searchBarTagList);
                 }
                 break
             case 'defilter':
@@ -108,101 +102,112 @@ class RecipesList {
         searchArray.push(this.ingredientTagList);
         searchArray.push(this.ustensilTagList);
         searchArray.push(this.applianceTagList);
-        searchArray.push(this.searchBarTagList);
-        this.filterList(searchArray);
+        this.filteredList(searchArray)
     }
 
-    filterList(array){
+    mainSearchBar(text) {
+            this.init();
+            let recipes = this.filteredList;
+            this.filteredList = [];
+            for (let recipe of recipes) {
+                let recipeSearchBarIngr = true;
+                let recipeSearchBarIngredient = [];
+                let recipeMatchSearchBar = true;
+                for (let i = 0; i < recipe.ingredients.length; i++) {
+                    recipeSearchBarIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
+                }
+                let recipeIngr = (recipeSearchBarIngredient.filter(ingredient => {
+                        if (ingredient.toLowerCase().includes(text)) {
+                            return true
+                        }
+                    }))
+                    if (recipeIngr.length !== 0) {
+                        recipeIngr = true
+                    }
+                recipeSearchBarIngr = recipeSearchBarIngr && recipeIngr;
+                recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.includes(text) || recipe.description.includes(text)) || recipeSearchBarIngr;
+                if (recipeMatchSearchBar == true) {
+                    this.filteredList.push(recipe);
+                    console.log(this.filteredList)
+                }
+        }
+        this.createCards(this.filteredList);
+        ingredientList.filtered(this.filteredList)
+        applianceList.filtered(this.filteredList)
+        ustensilList.filtered(this.filteredList)
+        }
+
+
+    filterList(array) {
+        console.log(array)
         let result = [];
         let recipes = this.filteredList;
         let ingredients = array[0];
         let ustensils = array[1];
         let appliances = array[2];
-        let searchBar = array[3];
         for (let recipe of recipes) {
             let recipeMatchIngr = true
             let recipeMatchUst = true
             let recipeMatchAppl = true
-            let recipeSearchBarIngr = true;
-            let recipeMatchSearchBar = true;
             let recipeIngredient = [];
             let recipeUstensil = [];
             let recipeAppliance = [];
-            let recipeSearchBarIngredient = [];
             if (ingredients.length !== 0) {
-                for (let i = 0; i < recipe.ingredients.length; i++){
+                for (let i = 0; i < recipe.ingredients.length; i++) {
                     recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
                 }
                 for (let ingr of ingredients) {
-                        let recipeIngr = (recipeIngredient.filter(ingredient => {
-                            if (ingredient.toLowerCase().includes(ingr)){
-                                return true
-                            }
-                        }))
-                        if (recipeIngr.length !== 0){
-                            recipeIngr = true
+                    let recipeIngr = (recipeIngredient.filter(ingredient => {
+                        if (ingredient.toLowerCase().includes(ingr)) {
+                            return true
                         }
-                        recipeMatchIngr = recipeMatchIngr && recipeIngr;
-                        console.log(recipeIngredient, recipeMatchIngr, ingr)
+                    }))
+                    if (recipeIngr.length !== 0) {
+                        recipeIngr = true
                     }
+                    recipeMatchIngr = recipeMatchIngr && recipeIngr;
+                }
             }
             if (ustensils.length !== 0) {
-                for (let i = 0; i < recipe.ustensils.length; i++){
+                for (let i = 0; i < recipe.ustensils.length; i++) {
                     recipeUstensil.push(recipe.ustensils[i].toLowerCase())
                 }
                 for (let ust of ustensils) {
                     let recipeUst = (recipeUstensil.filter(ustensil => {
-                        if (ustensil.toLowerCase().includes(ust)){
+                        if (ustensil.toLowerCase().includes(ust)) {
                             return true
                         }
                     }))
-                    if (recipeUst.length !== 0){
+                    if (recipeUst.length !== 0) {
                         recipeUst = true
                     }
                     recipeMatchUst = recipeMatchUst && recipeUst
                 }
             }
             if (appliances.length !== 0) {
-                for (let i = 0; i < recipe.appliance.length; i++){
+                for (let i = 0; i < recipe.appliance.length; i++) {
                     recipeAppliance.push(recipe.appliance.toLowerCase())
                 }
-                for (let appl of appliances) {let recipeApp= (recipeAppliance.filter(appliance => {
-                    if (appliance.toLowerCase().includes(appl)){
-                        return true
-                    }
-                }))
-                    if (recipeApp.length !== 0){
+                for (let appl of appliances) {
+                    let recipeApp = (recipeAppliance.filter(appliance => {
+                        if (appliance.toLowerCase().includes(appl)) {
+                            return true
+                        }
+                    }))
+                    if (recipeApp.length !== 0) {
                         recipeApp = true
                     }
                     recipeMatchAppl = recipeMatchAppl && recipeApp
                 }
             }
-            if (searchBar.length !== 0){
-                    for (let i = 0; i < recipe.ingredients.length; i++){
-                        recipeSearchBarIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
-
-                    }
-                    for (let ingr of searchBar) {
-                        let recipeIngr = (recipeSearchBarIngredient.filter(ingredient => {
-                            if (ingredient.toLowerCase().includes(ingr)){
-                                return true
-                            }
-                        }))
-                        if (recipeIngr.length !== 0){
-                            recipeIngr = true
-                        }
-                        recipeSearchBarIngr = recipeSearchBarIngr && recipeIngr;
-                    }
-                    recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.includes(searchBar) || recipe.description.includes(searchBar)) || recipeSearchBarIngr;
-                }
-            if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true && recipeMatchSearchBar === true){
-                result.push(recipe);
-                }
-             }
-        this.createCards(result);
-        ingredientList.filtered(result)
-        applianceList.filtered(result)
-        ustensilList.filtered(result)
+                if (recipeMatchIngr === true && recipeMatchUst === true && recipeMatchAppl === true) {
+                    result.push(recipe);
+            }
+            this.createCards(result);
+            ingredientList.filtered(result)
+            applianceList.filtered(result)
+            ustensilList.filtered(result)
+        }
     }
 
 }
