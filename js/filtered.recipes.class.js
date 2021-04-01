@@ -19,14 +19,14 @@ class IngredientTag extends Tag {
         ingredientList.forEach(list => {
             recipeIngredientList.push(list)
         });
-        for (let i = 0; i < recipeIngredientList.length ; i++){
+        for (let i = 0; i < recipeIngredientList.length; i++) {
             let ingredients = recipeIngredientList[i];
             if (ingredients.ingredient.indexOf(this.name) !== -1) {
                 eligible = true
-                }
             }
-        return eligible
         }
+        return eligible
+    }
 
 }
 
@@ -44,7 +44,7 @@ class UstensilTag extends Tag {
         ustensilList.forEach(list => {
             recipeUstensilList.push(list)
         });
-        for (let i = 0; i < recipeUstensilList.length; i++){
+        for (let i = 0; i < recipeUstensilList.length; i++) {
             if (recipeUstensilList[i].indexOf(this.name) !== -1) {
                 eligible = true
             }
@@ -63,10 +63,10 @@ class ApplianceTag extends Tag {
 
     isEligible(recipe) {
         let eligible = false;
-            if (recipe.appliance.indexOf(this.name) !==-1) {
-                eligible = true
-            }
-            return eligible
+        if (recipe.appliance.indexOf(this.name) !== -1) {
+            eligible = true
+        }
+        return eligible
     }
 
 }
@@ -103,19 +103,14 @@ class Filter {
                 }
                 break;
             case 'defilter':
-                switch (type) {
-                    case "ingredient":
-                        let ingredientIndex = this.taglist.indexOf(text);
-                        this.taglist.splice(ingredientIndex, 1);
-                        break
-                    case 'ustensil':
-                        let ustensilIndex = this.taglist.indexOf(text);
-                        this.taglist.splice(ustensilIndex, 1);
-                        break
-                    case 'appliance':
-                        let applianceIndex = this.taglist.indexOf(text);
-                        this.taglist.splice(applianceIndex, 1);
-                }
+                        for (let obj of this.taglist){
+                            let name = obj.name
+                              if (name.indexOf(text) !== -1){
+                                  obj.name = "";
+                              }
+                        }
+                        let index = this.taglist.indexOf(text);
+                        console.log(index)
         }
         console.log(this.taglist);
         document.getElementById(text).classList.add("hiden");
@@ -123,18 +118,18 @@ class Filter {
         this.filterRecipes();
     }
 
-    filterRecipes(){
+    filterRecipes() {
         this.finalRecipeList = [];
-        if (this.taglist.length === 0){
+        if (this.taglist.length === 0) {
             this.finalRecipeList = this.recipesFiltered
         }
-        for (let tag of this.taglist) {
-            for (let recipe of this.recipesFiltered) {
-                let eligible = false;
-                eligible = tag.isEligible(recipe) || eligible;
-                if (eligible) {
-                    this.finalRecipeList.push(recipe)
-                }
+        for (let recipe of this.recipesFiltered) {
+            let eligible = true;
+            for (let tag of this.taglist) {
+                eligible = tag.isEligible(recipe) && eligible;
+            }
+            if (eligible) {
+                this.finalRecipeList.push(recipe)
             }
         }
         let cleanFinalList = Array.from(new Set(this.finalRecipeList))
