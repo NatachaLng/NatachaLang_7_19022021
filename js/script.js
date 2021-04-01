@@ -5,6 +5,7 @@ let ingredientList
 let ustensilList
 let applianceList
 let filteredRecipeList
+let searchTag;
 
 let dbRecipes= new Database("https://natachalng.github.io/NatachaLang_7_19022021/data/recipes.json");
 
@@ -19,5 +20,6 @@ dbRecipes.load().then(
         ingredientList.init();
         ustensilList.init();
         applianceList.init();
+        searchTag=new SearchBarTag("");
     }
 );

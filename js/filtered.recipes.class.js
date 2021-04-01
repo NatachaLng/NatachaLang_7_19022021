@@ -76,6 +76,9 @@ class SearchBarTag extends Tag {
         super();
         this.name = name
     }
+    setName(text){
+        this.name=text;
+    }
 
     isEligible(recipe) {
         let eligible = false;
@@ -134,7 +137,7 @@ class Filter {
                     case "searchBar":
                         this.taglist = [];
                         console.log(this.taglist);
-                        this.taglist.push(new SearchBarTag(text));
+                        this.taglist.push(searchTag);
                         console.log(this.taglist)
                         break;
                     default:
