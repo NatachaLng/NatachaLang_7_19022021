@@ -47,12 +47,6 @@ class IngredientList {
         return uniqueIngredient;
     }
 
-    sortByAlphabeticOrder() {
-        let allIngredientsList = this.cleanIngredientList(array)
-        allIngredientsList.sort(function (a, b) {
-            return a.ingredient.localeCompare(b.ingredient);
-        });
-    }
 
 
     /**

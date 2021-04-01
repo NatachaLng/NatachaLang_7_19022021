@@ -83,7 +83,9 @@ class RecipesList {
                         break
                     case 'searchbar':
                         this.searchBarTagList = [];
+                        console.log(this.searchBarTagList)
                         this.searchBarTagList.push(text.toLowerCase());
+                        console.log(this.searchBarTagList);
                 }
                 break
             case 'defilter':
@@ -198,6 +200,9 @@ class RecipesList {
                 }
              }
         this.createCards(result);
+        ingredientList.filtered(result)
+        applianceList.filtered(result)
+        ustensilList.filtered(result)
     }
 
 }
