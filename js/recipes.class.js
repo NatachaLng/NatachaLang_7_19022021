@@ -26,6 +26,7 @@ class Recipes {
 
     getCardHTML() {
         let article = `<article class="card">
+                <a href="javascript:void(0)"> 
             <div class="card__img--placeholder">
 
             </div>
@@ -40,7 +41,7 @@ class Recipes {
                        </ul>
                     <div class="card__recipes--explanation">${this.description}</div>
                 </div>
-            </div>
+            </div></a>
         </article>`;
         return article;
     }
