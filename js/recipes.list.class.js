@@ -102,7 +102,7 @@ class RecipesList {
         searchArray.push(this.ingredientTagList);
         searchArray.push(this.ustensilTagList);
         searchArray.push(this.applianceTagList);
-        this.filteredList(searchArray)
+        this.filterList(searchArray)
     }
 
     mainSearchBar(text) {
