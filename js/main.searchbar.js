@@ -2,13 +2,14 @@
 function searchBar (){
     let searchBar = document.querySelector("#mainSearchBar");
         searchBar.addEventListener('keydown', function (e) {
+                document.getElementById('ustensil__tag').innerHTML = "";
+                document.getElementById("appliance__tag").innerHTML = "";
+                document.getElementById('ingredient__tag').innerHTML = "";
                 let searchString = e.target.value.toLowerCase();
                 recipeList.mainSearchBar(searchString);
-            if (13 == e.keyCode) {
-                let searchString = e.target.value.toLowerCase();
-                recipeList.mainSearchBar(searchString);
-                searchBar.value = "";
-            }
+                if (13 == e.keyCode) {
+                    searchBar.value = "";
+                }
         });
 }
 
