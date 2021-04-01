@@ -136,9 +136,7 @@ class Filter {
                         break;
                     case "searchBar":
                         this.taglist = [];
-                        console.log(this.taglist);
                         this.taglist.push(searchTag);
-                        console.log(this.taglist)
                         break;
                     default:
                         throw "error";
