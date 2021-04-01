@@ -169,8 +169,10 @@ class Filter {
             }
         }
         let cleanFinalList = Array.from(new Set(this.finalRecipeList))
-        console.log(cleanFinalList)
-        recipeList.createCards(cleanFinalList)
+        ingredientList.filtered(cleanFinalList);
+        applianceList.filtered(cleanFinalList);
+        ustensilList.filtered(cleanFinalList);
+        recipeList.createCards(cleanFinalList);
 
     }
 

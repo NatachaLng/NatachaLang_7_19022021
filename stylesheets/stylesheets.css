@@ -72,10 +72,6 @@ ul, li {
   padding: 10px;
   margin: 10px; }
 
-.hiden{
-  display: none;
-}
-
 .ingredient {
   background-color: #3282F7; }
 
@@ -218,6 +214,9 @@ ul, li {
 
 .show {
   display: block; }
+
+.hiden {
+  display: none; }
 
 #card__reciper--list {
   margin-left: 10%;
