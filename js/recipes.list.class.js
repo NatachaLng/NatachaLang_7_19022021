@@ -48,8 +48,13 @@ class RecipesList {
 
     createCards(recipes) {
         document.querySelector(this.selector_id_list).innerHTML = "";
-        for (let i = 0; i < recipes.length; i++) {
-            document.querySelector(this.selector_id_list).innerHTML += recipes[i].getCardHTML();
+        document.getElementById("nomatch__message").style.display = "none";
+        if (recipes.length < 1){
+            document.getElementById("nomatch__message").style.display = "block";
+        } else {
+            for (let i = 0; i < recipes.length; i++) {
+                document.querySelector(this.selector_id_list).innerHTML += recipes[i].getCardHTML();
+            }
         }
     }
 }

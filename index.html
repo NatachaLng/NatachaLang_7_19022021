@@ -25,7 +25,7 @@
         <img class="header__logo" src="images/logo_les_petits_plats.png" alt="logo les petits plats">
     </div>
     <div id="searchbar">
-        <input class="searchbar" id='mainSearchBar' type="text" placeholder="Rechercher un ingrédient, un ustensile, un appareil ou une recette" onclick="searchBar()"><i class="fas fa-search"></i>
+        <input class="searchbar" id='mainSearchBar' type="text" placeholder="Rechercher un ingrédient, un ustensile, un appareil ou une recette" onclick="searchBar()"><i class="fas fa-search" onclick="searchBar()"></i>
     </div>
 </header>
 <main>
@@ -73,6 +73,8 @@
     <div id="card__reciper--list">
 
     </div>
+
+    <div id="nomatch__message" class="hiden">Aucune recette ne correspond à votre critère… vous pouvez chercher « tarte aux pommes », « poisson » etc...</div>
 </main>
 <script src="js/script.js"></script>
 </body>
