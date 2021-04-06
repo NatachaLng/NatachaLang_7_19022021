@@ -54,6 +54,7 @@ class RecipesList {
 
     createCards(array) {
         document.querySelector(this.selector_id_list).innerHTML = "";
+        document.getElementById("nomatch__message").style.display = "none";
         if (array.length < 1) {
             document.getElementById("nomatch__message").style.display = "block"
         } else {
