@@ -308,4 +308,13 @@ h2 {
   -webkit-line-clamp: 7 "...";
   overflow: hidden; }
 
+#nomatch__message {
+  font-size: 26px;
+  color: #C7BEBE;
+  width: 80%;
+  text-align: center;
+  margin-top: 30px;
+  margin-left: 10%;
+  margin-right: 10%; }
+
 /*# sourceMappingURL=stylesheets.css.map */

@@ -54,8 +54,12 @@ class RecipesList {
 
     createCards(array) {
         document.querySelector(this.selector_id_list).innerHTML = "";
-        for (let i = 0; i < array.length; i++) {
-            document.querySelector(this.selector_id_list).innerHTML += array[i].getCardHTML();
+        if (array.length < 1) {
+            document.getElementById("nomatch__message").style.display = "block"
+        } else {
+            for (let i = 0; i < array.length; i++) {
+                document.querySelector(this.selector_id_list).innerHTML += array[i].getCardHTML();
+            }
         }
     }
 
