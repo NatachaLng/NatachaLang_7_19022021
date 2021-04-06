@@ -15,6 +15,7 @@ class RecipesList {
     init() {
         this.getRecipes();
         this.createCards(this.getRecipes());
+        document.getElementById('mainSearchBar').value = "";
     }
 
     /**

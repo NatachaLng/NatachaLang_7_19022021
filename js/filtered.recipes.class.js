@@ -13,6 +13,7 @@ class IngredientTag extends Tag {
     }
 
     isEligible(recipe) {
+        let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let recipeIngredientList = [];
         let eligible = false
         let ingredientList = recipe.ingredients
@@ -20,8 +21,9 @@ class IngredientTag extends Tag {
             recipeIngredientList.push(list)
         });
         for (let i = 0; i < recipeIngredientList.length; i++) {
-            let ingredients = recipeIngredientList[i];
-            if (ingredients.ingredient.includes(this.name)) {
+            let ingredients = recipeIngredientList[i].ingredient;
+            let normalizedIngredient = ingredients.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+            if (normalizedIngredient.includes(normalizedName)) {
                 eligible = true
             }
         }
@@ -38,6 +40,7 @@ class UstensilTag extends Tag {
     }
 
     isEligible(recipe) {
+        let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let recipeUstensilList = [];
         let eligible = false
         let ustensilList = recipe.ustensils
@@ -45,7 +48,9 @@ class UstensilTag extends Tag {
             recipeUstensilList.push(list)
         });
         for (let i = 0; i < recipeUstensilList.length; i++) {
-            if (recipeUstensilList[i].includes(this.name)) {
+            let ustensils = recipeUstensilList[i];
+            let normalizedUstensil = ustensils.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+            if (normalizedUstensil.includes(normalizedName)) {
                 eligible = true
             }
         }
@@ -62,8 +67,9 @@ class ApplianceTag extends Tag {
     }
 
     isEligible(recipe) {
+        let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let eligible = false;
-        if (recipe.appliance.includes(this.name)) {
+        if (recipe.appliance.includes(normalizedName)) {
             eligible = true
         }
         return eligible
@@ -81,25 +87,29 @@ class SearchBarTag extends Tag {
     }
 
     isEligible(recipe) {
+        let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         let eligible = false;
         let ingredientEligible = false;
         let nameEligible = false;
         let descriptionEligible = false;
         let recipeIngredientList = [];
         let ingredients = recipe.ingredients
+        let normalizedRecipeName = recipe.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
+        let normalizedRecipeDesc = recipe.description.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
         ingredients.forEach(list => {
             recipeIngredientList.push(list)
         });
         for (let i = 0; i < recipeIngredientList.length; i++) {
-            let ingredients = recipeIngredientList[i];
-            if (ingredients.ingredient.includes(this.name)) {
+            let ingredients = recipeIngredientList[i].ingredient;
+            let normalizedIngredient = ingredients.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+            if (normalizedIngredient.includes(normalizedName)) {
                 ingredientEligible = true
             }
         }
-        if (recipe.name.includes(this.name)) {
+        if (normalizedRecipeName.includes(normalizedName)) {
             nameEligible = true
         }
-        if (recipe.description.includes(this.name)) {
+        if (normalizedRecipeDesc.includes(normalizedName)) {
             descriptionEligible = true
         }
         eligible = ingredientEligible || nameEligible || descriptionEligible
