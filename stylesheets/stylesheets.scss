@@ -202,7 +202,7 @@ ul, li{
   position: relative;
   display: inline-block;
   height: 53px;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .dropdown__trigered{
@@ -255,6 +255,7 @@ ul, li{
 .filter__list{
   display: flex;
   flex-wrap: wrap;
+  min-width: 592px;
   max-height: 400px;
 }
 
@@ -292,6 +293,13 @@ ul, li{
   display: block;
 }
 
+#ingredient__tag,
+#ustensil__tag,
+#appliance__tag
+{
+  display: flex;
+  flex-direction: row;
+}
 
 
 #card__reciper--list{
