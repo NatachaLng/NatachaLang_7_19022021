@@ -112,6 +112,7 @@ class RecipesList {
 
     mainSearchBar(text) {
             this.init();
+            text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
             let recipes = this.filteredList;
             this.filteredList = [];
             for (let recipe of recipes) {
@@ -119,10 +120,10 @@ class RecipesList {
                 let recipeSearchBarIngredient = [];
                 let recipeMatchSearchBar = true;
                 for (let i = 0; i < recipe.ingredients.length; i++) {
-                    recipeSearchBarIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
+                    recipeSearchBarIngredient.push(recipe.ingredients[i].ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
                 }
                 let recipeIngr = (recipeSearchBarIngredient.filter(ingredient => {
-                        if (ingredient.toLowerCase().includes(text)) {
+                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(text)) {
                             return true
                         }
                     }))
@@ -130,7 +131,7 @@ class RecipesList {
                         recipeIngr = true
                     }
                 recipeSearchBarIngr = recipeSearchBarIngr && recipeIngr;
-                recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.includes(text) || recipe.description.includes(text)) || recipeSearchBarIngr;
+                recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(text) || recipe.description.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(text) || recipeSearchBarIngr);
                 if (recipeMatchSearchBar == true) {
                     this.filteredList.push(recipe);
                     console.log(this.filteredList)
@@ -159,11 +160,11 @@ class RecipesList {
             let recipeAppliance = [];
             if (ingredients.length !== 0) {
                 for (let i = 0; i < recipe.ingredients.length; i++) {
-                    recipeIngredient.push(recipe.ingredients[i].ingredient.toLowerCase())
+                    recipeIngredient.push(recipe.ingredients[i].ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
                 }
                 for (let ingr of ingredients) {
                     let recipeIngr = (recipeIngredient.filter(ingredient => {
-                        if (ingredient.toLowerCase().includes(ingr)) {
+                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ingr)) {
                             return true
                         }
                     }))
@@ -175,11 +176,11 @@ class RecipesList {
             }
             if (ustensils.length !== 0) {
                 for (let i = 0; i < recipe.ustensils.length; i++) {
-                    recipeUstensil.push(recipe.ustensils[i].toLowerCase())
+                    recipeUstensil.push(recipe.ustensils[i].normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
                 }
                 for (let ust of ustensils) {
                     let recipeUst = (recipeUstensil.filter(ustensil => {
-                        if (ustensil.toLowerCase().includes(ust)) {
+                        if (ustensil.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ust)) {
                             return true
                         }
                     }))
@@ -191,11 +192,11 @@ class RecipesList {
             }
             if (appliances.length !== 0) {
                 for (let i = 0; i < recipe.appliance.length; i++) {
-                    recipeAppliance.push(recipe.appliance.toLowerCase())
+                    recipeAppliance.push(recipe.appliance.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
                 }
                 for (let appl of appliances) {
                     let recipeApp = (recipeAppliance.filter(appliance => {
-                        if (appliance.toLowerCase().includes(appl)) {
+                        if (appliance.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(appl)) {
                             return true
                         }
                     }))
