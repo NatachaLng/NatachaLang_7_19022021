@@ -21,7 +21,7 @@ class IngredientTag extends Tag {
         });
         for (let i = 0; i < recipeIngredientList.length; i++) {
             let ingredients = recipeIngredientList[i];
-            if (ingredients.ingredient.indexOf(this.name) !== -1) {
+            if (ingredients.ingredient.includes(this.name)) {
                 eligible = true
             }
         }
@@ -45,7 +45,7 @@ class UstensilTag extends Tag {
             recipeUstensilList.push(list)
         });
         for (let i = 0; i < recipeUstensilList.length; i++) {
-            if (recipeUstensilList[i].indexOf(this.name) !== -1) {
+            if (recipeUstensilList[i].includes(this.name)) {
                 eligible = true
             }
         }
@@ -63,7 +63,7 @@ class ApplianceTag extends Tag {
 
     isEligible(recipe) {
         let eligible = false;
-        if (recipe.appliance.indexOf(this.name) !== -1) {
+        if (recipe.appliance.includes(this.name)) {
             eligible = true
         }
         return eligible
@@ -92,14 +92,14 @@ class SearchBarTag extends Tag {
         });
         for (let i = 0; i < recipeIngredientList.length; i++) {
             let ingredients = recipeIngredientList[i];
-            if (ingredients.ingredient.indexOf(this.name) !== -1) {
+            if (ingredients.ingredient.includes(this.name)) {
                 ingredientEligible = true
             }
         }
-        if (recipe.name.indexOf(this.name) !== -1) {
+        if (recipe.name.includes(this.name)) {
             nameEligible = true
         }
-        if (recipe.description.indexOf(this.name) !== -1) {
+        if (recipe.description.includes(this.name)) {
             descriptionEligible = true
         }
         eligible = ingredientEligible || nameEligible || descriptionEligible

@@ -189,7 +189,7 @@ ul, li{
   position: relative;
   display: inline-block;
   height: 53px;
-  margin-left: 20px;
+  margin-right: 20px;
 }
 
 .dropdown__trigered{
@@ -243,6 +243,7 @@ ul, li{
   display: flex;
   flex-wrap: wrap;
   max-height: 400px;
+  min-width: 592px;
 }
 
 .list__items{
@@ -282,6 +283,13 @@ ul, li{
   display: none;
 }
 
+#ingredient__tag,
+#ustensil__tag,
+#appliance__tag
+{
+  display: flex;
+  flex-direction: row;
+}
 
 #card__reciper--list{
   margin-left: 10%;
@@ -299,7 +307,8 @@ ul, li{
   max-width: 550px;
   border: 5px;
   background: $lightgrey;
-  margin:20px;
+  margin-top:20px;
+  margin-bottom: 20px;
 }
 
 .card__img--placeholder{
