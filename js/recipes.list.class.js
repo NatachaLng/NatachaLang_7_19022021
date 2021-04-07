@@ -112,7 +112,7 @@ class RecipesList {
 
     mainSearchBar(text) {
             this.init();
-            text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+            text = text.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
             let recipes = this.filteredList;
             this.filteredList = [];
             for (let recipe of recipes) {
@@ -123,7 +123,7 @@ class RecipesList {
                     recipeSearchBarIngredient.push(recipe.ingredients[i].ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
                 }
                 let recipeIngr = (recipeSearchBarIngredient.filter(ingredient => {
-                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(text)) {
+                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(text)) {
                             return true
                         }
                     }))
@@ -131,7 +131,7 @@ class RecipesList {
                         recipeIngr = true
                     }
                 recipeSearchBarIngr = recipeSearchBarIngr && recipeIngr;
-                recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(text) || recipe.description.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(text) || recipeSearchBarIngr);
+                recipeMatchSearchBar = recipeMatchSearchBar && (recipe.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(text) || recipe.description.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(text) || recipeSearchBarIngr);
                 if (recipeMatchSearchBar == true) {
                     this.filteredList.push(recipe);
                     console.log(this.filteredList)
@@ -160,11 +160,11 @@ class RecipesList {
             let recipeAppliance = [];
             if (ingredients.length !== 0) {
                 for (let i = 0; i < recipe.ingredients.length; i++) {
-                    recipeIngredient.push(recipe.ingredients[i].ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
+                    recipeIngredient.push(recipe.ingredients[i].ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase())
                 }
                 for (let ingr of ingredients) {
                     let recipeIngr = (recipeIngredient.filter(ingredient => {
-                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ingr)) {
+                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ingr).toLowerCase()) {
                             return true
                         }
                     }))
@@ -176,11 +176,11 @@ class RecipesList {
             }
             if (ustensils.length !== 0) {
                 for (let i = 0; i < recipe.ustensils.length; i++) {
-                    recipeUstensil.push(recipe.ustensils[i].normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
+                    recipeUstensil.push(recipe.ustensils[i].normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase())
                 }
                 for (let ust of ustensils) {
                     let recipeUst = (recipeUstensil.filter(ustensil => {
-                        if (ustensil.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ust)) {
+                        if (ustensil.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ust).toLowerCase()) {
                             return true
                         }
                     }))
@@ -192,11 +192,11 @@ class RecipesList {
             }
             if (appliances.length !== 0) {
                 for (let i = 0; i < recipe.appliance.length; i++) {
-                    recipeAppliance.push(recipe.appliance.normalize('NFD').replace(/[\u0300-\u036f]/g, ""))
+                    recipeAppliance.push(recipe.appliance.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase())
                 }
                 for (let appl of appliances) {
                     let recipeApp = (recipeAppliance.filter(appliance => {
-                        if (appliance.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(appl)) {
+                        if (appliance.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(appl)) {
                             return true
                         }
                     }))
