@@ -17,11 +17,20 @@ class IngredientList {
         this.ingredientSearchBar();
     }
 
+    /**
+     *
+     * @param array
+     */
     filtered(array){
         this.createIngredientList(this.cleanIngredientList(array));
         this.ingredientSearchBar();
     }
 
+    /**
+     *
+     * @param array
+     * @return {any[]}
+     */
     allIngredientList(array) {
         let allIngredients = new Array();
         for (let p of array) {
@@ -36,6 +45,11 @@ class IngredientList {
 
     }
 
+    /**
+     *
+     * @param array
+     * @return {*[]}
+     */
     cleanIngredientList(array) {
         let allIngredientsList = this.allIngredientList(array);
         const uniqueIngredient = Array.from(new Set(allIngredientsList.map(a => a.ingredient)))
@@ -58,7 +72,9 @@ class IngredientList {
         }
     }
 
-
+    /**
+     * Ingredient searchBar
+     */
     ingredientSearchBar() {
         let searchBar = document.querySelector("#input__ingredient");
         searchBar.addEventListener('click', openDropdownIngredients);

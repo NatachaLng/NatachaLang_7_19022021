@@ -1,3 +1,7 @@
+/**
+ * create Tag
+ */
+
 class Tag {
     isEligible(plat) {
         throw "Not implemented"
@@ -5,6 +9,9 @@ class Tag {
 }
 
 
+/**
+ * Ingredients
+ */
 class IngredientTag extends Tag {
 
     constructor(name) {
@@ -12,6 +19,10 @@ class IngredientTag extends Tag {
         this.name = name;
     }
 
+    /**
+     * @param recipe
+     * @return {boolean}
+     */
     isEligible(recipe) {
         let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
         let recipeIngredientList = [];
@@ -32,6 +43,9 @@ class IngredientTag extends Tag {
 
 }
 
+/**
+ * Ustensil
+ */
 class UstensilTag extends Tag {
 
     constructor(name) {
@@ -39,6 +53,11 @@ class UstensilTag extends Tag {
         this.name = name;
     }
 
+    /**
+     *
+     * @param recipe
+     * @return {boolean}
+     */
     isEligible(recipe) {
         let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
         let recipeUstensilList = [];
@@ -59,6 +78,9 @@ class UstensilTag extends Tag {
 
 }
 
+/**
+ * Appliance
+ */
 class ApplianceTag extends Tag {
 
     constructor(name) {
@@ -66,6 +88,11 @@ class ApplianceTag extends Tag {
         this.name = name;
     }
 
+    /**
+     *
+     * @param recipe
+     * @return {boolean}
+     */
     isEligible(recipe) {
         let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
         let eligible = false;
@@ -77,6 +104,9 @@ class ApplianceTag extends Tag {
 
 }
 
+/**
+ * SearchBar
+ */
 class SearchBarTag extends Tag {
     constructor(name) {
         super();
@@ -86,6 +116,11 @@ class SearchBarTag extends Tag {
         this.name=text;
     }
 
+    /**
+     *
+     * @param recipe
+     * @return {boolean}
+     */
     isEligible(recipe) {
         let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
         let eligible;
@@ -125,6 +160,12 @@ class Filter {
         this.finalRecipeList = [];
     }
 
+    /**
+     *
+     * @param fct {filter, defilter}
+     * @param type {ingredient, ustensil, appliance, searchBar}
+     * @param text {text}
+     */
     createTagList(fct, type, text) {
         let ingredientTag = document.querySelector("#ingredient__tag");
         let ustensilTag = document.querySelector("#ustensil__tag");
@@ -165,6 +206,9 @@ class Filter {
         this.filterRecipes();
     }
 
+    /**
+     * filter
+     */
     filterRecipes() {
         this.finalRecipeList = [];
         if (this.taglist.length === 0) {

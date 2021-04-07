@@ -23,7 +23,10 @@ class Recipes {
             this.ustensils = ustensils
     }
 
-
+    /**
+     * Create the cards
+     * @return {string}
+     */
     getCardHTML() {
         let article = `<article class="card">
                 <a href="javascript:void(0)"> 

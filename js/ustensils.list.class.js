@@ -17,11 +17,20 @@ class UstensilList {
         this.ustensilSearchBar();
     }
 
+    /**
+     *
+     * @param array
+     */
     filtered(array){
         this.createUstensilList(this.cleanUstensilsList(array));
         this.ustensilSearchBar();
     }
 
+    /**
+     *
+     * @param array
+     * @return {any[]}
+     */
     allUstensilsList(array) {
         let allUstensils = new Array();
         for (let p of array) {
@@ -35,6 +44,11 @@ class UstensilList {
         return allUstensils;
     }
 
+    /**
+     *
+     * @param array
+     * @return {*[]}
+     */
     cleanUstensilsList(array){
         let allUstensilsList = this.allUstensilsList(array);
         const uniqueUstensil = Array.from(new Set(allUstensilsList.map(a => a.ustensil)))
@@ -57,6 +71,9 @@ class UstensilList {
 
     }
 
+    /**
+     * ustensil searchbar
+     */
     ustensilSearchBar() {
         let searchBar = document.querySelector("#input__ustensils");
         searchBar.addEventListener('click', openDropdownUstensils);

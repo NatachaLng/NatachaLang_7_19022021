@@ -17,11 +17,20 @@ class ApplianceList {
         this.applianceSearchBar();
     }
 
+    /**
+     *
+     * @param array
+     */
     filtered(array){
         this.createApplianceList(this.cleanAppliancesList(array));
         this.applianceSearchBar();
     }
 
+    /**
+     *
+     * @param array
+     * @return {any[]}
+     */
     allAppliancesList(array) {
         let allAppliances = new Array();
         for (let p of array) {
@@ -32,6 +41,11 @@ class ApplianceList {
         return allAppliances;
     }
 
+    /**
+     *
+     * @param array
+     * @return {*[]}
+     */
     cleanAppliancesList(array){
         let allAppliancesList = this.allAppliancesList(array);
         const uniqueAppliance = Array.from(new Set(allAppliancesList.map(a => a.appliance)))
@@ -40,13 +54,6 @@ class ApplianceList {
             })
         this.list = uniqueAppliance
         return uniqueAppliance;
-    }
-
-    sortByAlphabeticOrder(){
-        let allAppliancesList = this.cleanAppliancesList()
-        allAppliancesList.sort(function (a, b) {
-            return a.appliance.localeCompare(b.appliance);
-        });
     }
 
     /**
@@ -60,6 +67,9 @@ class ApplianceList {
 
     }
 
+    /**
+     * Searchbar
+     */
     applianceSearchBar() {
         let searchBar = document.querySelector("#input__appliance");
         searchBar.addEventListener('click', openDropdownAppliances);
