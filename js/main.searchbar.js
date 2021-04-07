@@ -1,6 +1,6 @@
 function searchBar (){
     let searchBar = document.querySelector("#mainSearchBar");
-    searchBar.addEventListener('keydown', function (e) {
+    searchBar.addEventListener('keyup', function (e) {
                 document.getElementById('ustensil__tag').innerHTML = "";
                 document.getElementById("appliance__tag").innerHTML = "";
                 document.getElementById('ingredient__tag').innerHTML = "";

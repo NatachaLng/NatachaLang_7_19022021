@@ -88,7 +88,7 @@ class SearchBarTag extends Tag {
 
     isEligible(recipe) {
         let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "");
-        let eligible = false;
+        let eligible;
         let ingredientEligible = false;
         let nameEligible = false;
         let descriptionEligible = false;
@@ -100,8 +100,8 @@ class SearchBarTag extends Tag {
             recipeIngredientList.push(list)
         });
         for (let i = 0; i < recipeIngredientList.length; i++) {
-            let ingredients = recipeIngredientList[i].ingredient;
-            let normalizedIngredient = ingredients.normalize('NFD').replace(/[\u0300-\u036f]/g, "")
+            let ingrts = recipeIngredientList[i].ingredient;
+            let normalizedIngredient = ingrts.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
             if (normalizedIngredient.includes(normalizedName)) {
                 ingredientEligible = true
             }
