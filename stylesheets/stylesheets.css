@@ -295,8 +295,11 @@ h2 {
   height: 115px;
   margin-left: 5px;
   white-space: normal;
-  overflow: hidden;
-  text-overflow: ellipsis; }
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 8;
+  overflow: hidden; }
 
 #nomatch__message {
   font-size: 26px;
