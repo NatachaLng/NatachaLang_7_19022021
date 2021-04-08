@@ -96,7 +96,8 @@ class ApplianceTag extends Tag {
     isEligible(recipe) {
         let normalizedName = this.name.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
         let eligible = false;
-        if (recipe.appliance.includes(normalizedName)) {
+        let appliance = recipe.appliance.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase()
+        if (appliance.includes(normalizedName)) {
             eligible = true
         }
         return eligible
