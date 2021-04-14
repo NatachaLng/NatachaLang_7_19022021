@@ -35,7 +35,8 @@ ul, li {
   width: 100%;
   display: flex;
   justify-content: center;
-  align-content: center; }
+  align-content: center;
+  text-overflow: ellipsis; }
 
 .searchbar {
   width: 80%;
@@ -148,7 +149,8 @@ ul, li {
   position: relative;
   display: inline-block;
   height: 53px;
-  margin-right: 20px; }
+  margin-right: 10px;
+  margin-left: 10px; }
 
 .dropdown__trigered {
   display: none;
