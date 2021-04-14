@@ -159,8 +159,7 @@ ul, li {
 .dropdown {
   position: relative;
   display: inline-block;
-  height: 53px;
-  margin-right: 20px; }
+  height: 53px; }
 
 .dropdown__trigered {
   display: none;
