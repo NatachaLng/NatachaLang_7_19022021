@@ -164,7 +164,7 @@ class RecipesList {
                 }
                 for (let ingr of ingredients) {
                     let recipeIngr = (recipeIngredient.filter(ingredient => {
-                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ingr).toLowerCase()) {
+                        if (ingredient.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(ingr)) {
                             return true
                         }
                     }))
@@ -180,7 +180,7 @@ class RecipesList {
                 }
                 for (let ust of ustensils) {
                     let recipeUst = (recipeUstensil.filter(ustensil => {
-                        if (ustensil.normalize('NFD').replace(/[\u0300-\u036f]/g, "").includes(ust).toLowerCase()) {
+                        if (ustensil.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase().includes(ust)) {
                             return true
                         }
                     }))
