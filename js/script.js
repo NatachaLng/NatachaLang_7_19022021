@@ -6,7 +6,7 @@ let ustensilList
 let applianceList
 let filteredRecipeList
 
-let dbRecipes= new Database("https://natachalng.github.io/les-petits-plats/data/recipes.json");
+let dbRecipes= new Database("https://natachalng.github.io/Les-petits-plats/data/recipes.json");
 
 dbRecipes.load().then(
     function () {
